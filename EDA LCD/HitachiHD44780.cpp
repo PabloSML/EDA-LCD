@@ -10,11 +10,13 @@ HitachiHD44780::HitachiHD44780()
 HitachiHD44780::~HitachiHD44780()
 {
 }
-
+*/
 bool HitachiHD44780::lcdInitOk()
 {
+	return FT_SUCCESS(this->status) ? true : false;
 }
 
+/*
 FT_STATUS HitachiHD44780::lcdGetError()
 {
 }
