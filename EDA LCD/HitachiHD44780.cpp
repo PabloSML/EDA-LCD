@@ -18,11 +18,10 @@ HitachiHD44780::~HitachiHD44780()
 	lcdHandler = nullptr;
 	cout << "Hitachi display destroyed" << endl;
 }
-/*
 bool HitachiHD44780::lcdInitOk()
 {
+	return FT_SUCCESS(this->status);
 }
-*/
 FT_STATUS HitachiHD44780::lcdGetError()
 {
 	return status;
