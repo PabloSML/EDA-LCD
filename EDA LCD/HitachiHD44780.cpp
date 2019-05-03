@@ -62,7 +62,11 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 	if (isalnum(c))
 	{
 		lcdWriteDR(&lcdHandler, c);
-		if (++cadd > END_SECOND_LINE) { cadd = HOME; }	//ni idea el nombre de los define
+		if (++cadd > END_SECOND_LINE) 
+		{ 
+			cadd = HOME; 
+		}	//ni idea el nombre de los define
+
 		lcdUpdateCursor();
 	}
 	return *this;
@@ -86,34 +90,71 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 	return *this;
 }
 
-/*
+
 bool HitachiHD44780::lcdMoveCursorUp()
 {
-
+	bool success = false;
+	if (cadd > END_FIRST_LINE)
+	{
+		cadd -= LINE_LENGHT; // LINE_LENGHT = 16
+		lcdUpdateCursor();
+		success = true;
+	}
+	return success;
 }
-/*
+
 bool HitachiHD44780::lcdMoveCursorDown()
 {
-
+	bool success = false;
+	if (cadd <= END_FIRST_LINE)
+	{
+		cadd += LINE_LENGHT; // LINE_LENGHT = 16
+		lcdUpdateCursor();
+		success = true;
+	}
+	return success;
 }
 
 bool HitachiHD44780::lcdMoveCursorRight()
 {
-
+	bool success = false;
+	if (cadd < END_SECOND_LINE)
+	{
+		cadd++;
+		lcdUpdateCursor();
+		success = true;
+	}
+	return success;
 }
 
 bool HitachiHD44780::lcdMoveCursorLeft()
 {
-
+	bool success = false;
+	if (cadd > START_FIRST_LINE)  // START_FIRST_LINE = 1
+	{
+		cadd--; 
+		lcdUpdateCursor();
+		success = true;
+	}
+	return success;
 }
 
-bool HitachiHD44780::lcdSetCursorPosition(const cursorPosition pos)
+bool HitachiHD44780::lcdSetCursorPosition(const cursorPosition pos)	// en lo posible cambiar numeros magicos
 {
-
+	bool success = false;
+	if (pos.column >= 0 && pos.column < 16 && pos.row >= 0 && pos.row < 2)
+	{
+		cadd = pos.row * 16 + pos.column + 1;
+		lcdUpdateCursor();
+		success = true;
+	}
+	return success;
 }
 
-cursorPosition HitachiHD44780::lcdGetCursorPosition()
+cursorPosition HitachiHD44780::lcdGetCursorPosition()	// tambien estaria bueno cambiar el 16 por un define
 {
-
+	cursorPosition temp;
+	temp.row = (cadd-1) / 16;
+	temp.column = (cadd-1) % 16;
+	return temp;
 }
-*/
