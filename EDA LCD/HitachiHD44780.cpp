@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 #include "HitachiHD44780.h"
 using namespace std;
 
@@ -29,7 +30,7 @@ FT_STATUS HitachiHD44780::lcdGetError()
 bool HitachiHD44780::lcdClear()
 {
 	bool clearSuccess = false;
-	lcdWriteIR(lcdHandler, LCD_CLEAR);
+	lcdWriteIR(&lcdHandler, LCD_CLEAR);
 	cadd = 1;
 	if (FT_GetStatus(lcdHandler, &dump, &dump, &dump) == FT_OK)
 	{
@@ -57,9 +58,12 @@ bool HitachiHD44780::lcdClearToEOL()
 
 basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 {
-	lcdWriteDR(lcdHandler, c);
-	if (++cadd > END_SECOND_LINE) { cadd = HOME; }	//ni idea el nombre de los define
-	lcdUpdateCursor();
+	if (isalnum(c))
+	{
+		lcdWriteDR(&lcdHandler, c);
+		if (++cadd > END_SECOND_LINE) { cadd = HOME; }	//ni idea el nombre de los define
+		lcdUpdateCursor();
+	}
 	return *this;
 }
 /*
