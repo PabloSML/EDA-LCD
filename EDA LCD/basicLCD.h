@@ -159,6 +159,14 @@ public:
 
 protected:
 	/*=====================================================
+	* Handler del LCD utilizado por el modulo FTDI 
+	*=====================================================*/
+	FT_HANDLE lcdHandler;
+	/*=====================================================
+	* Estado del LCD utilizado por el modulo FTDI
+	*=====================================================*/
+	FT_STATUS status;
+	/*=====================================================
 	* Nota 1: cadd (cursor address) es una variable
 	* que contiene la dirección actual del cursor en el
 	* display+1. Esta variable es necesaria pues no podemos
