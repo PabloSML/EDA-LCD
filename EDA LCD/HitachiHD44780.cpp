@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <cstring>
 #include "HitachiHD44780.h"
 using namespace std;
 
@@ -69,18 +70,17 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 
 basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 {
-	int index = 0;
-	int length = 0;
-
-	while (c[index] != NULL)
-		length++;
+	int index = 0; // no creo que haga falta
+	int length = strlen((const char*)c);
 
 	if (length > LONG_MAX_DISPLAY)	//si excede la cantidad maxima de caracteres que puede mostrar fisicamente el display
 		index = length - LONG_MAX_DISPLAY; //solo se muestran los ultimos LONG_MAX_DISPLAY caracteres
 
-	while (c[index] != NULL)
+	// ??? no entiendo. no deberia ser lenght = LONG_MAX_DISPLAY y despues se muestra hasta ahi??
+
+	for(int i = 0; i < length; i++)
 	{
-		*this << c[index]; 
+		*this << c[i]; 
 	}
 	//el cursor ya queda actualizado
 	return *this;
