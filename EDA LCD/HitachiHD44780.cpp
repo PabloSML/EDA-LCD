@@ -7,7 +7,7 @@ using namespace std;
 
 HitachiHD44780::HitachiHD44780() : basicLCD()
 {
-	if (status == FT_OK)
+	if (lcdInfo.status == FT_OK)
 		cout << "Hitachi display constructed succesfully" << endl;
 	else
 		cout << "There was an error constructing the Hitachi display" << endl;
@@ -15,22 +15,32 @@ HitachiHD44780::HitachiHD44780() : basicLCD()
 
 HitachiHD44780::~HitachiHD44780()
 {
-	lcdHandler = nullptr;
+	lcdInfo.lcdHandler = nullptr;
 	cout << "Hitachi display destroyed" << endl;
 }
 bool HitachiHD44780::lcdInitOk()
 {
-	return FT_SUCCESS(this->status);
+	return FT_SUCCESS(this->lcdInfo.status);
 }
 FT_STATUS HitachiHD44780::lcdGetError()
 {
-	return status;
+	return lcdInfo.status;
 }
 
 bool HitachiHD44780::lcdClear()
 {
-	lcdWriteIR(lcdHandler, LCD_CLEAR);
+	bool clearSuccess = false;
+	lcdWriteIR(lcdInfo, LCD_CLEAR);
 	cadd = 1;
+	if (lcdInfo.status == FT_OK)
+	{
+		cout << "LCD Clear successful" << endl;
+		clearSuccess = true;
+	}
+	else
+		cout << "LCD Clear fail" << endl;
+
+	return clearSuccess;
 }
 /*
 bool HitachiHD44780::lcdClearToEOL()

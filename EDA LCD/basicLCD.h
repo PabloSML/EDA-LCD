@@ -4,6 +4,12 @@
 #include "ftd2xx.h"
 //#include ""  aca va incluido el modulo de bajo nivel de gonza con lcdInit
 
+typedef struct // por ahora lo dejo aca para poder referenciarlo, pero va en lo de gonza
+{
+	FT_HANDLE lcdHandler;
+	FT_STATUS status;
+}FT_STRUCT;
+
 struct cursorPosition
 {
 	int row;
@@ -160,13 +166,10 @@ public:
 
 protected:
 	/*=====================================================
-	* Handler del LCD utilizado por el modulo FTDI 
+	* Estructura que contiene el Handler y estado 
+	* del LCD utilizado por el modulo FTDI 
 	*=====================================================*/
-	FT_HANDLE lcdHandler;
-	/*=====================================================
-	* Estado del LCD utilizado por el modulo FTDI
-	*=====================================================*/
-	FT_STATUS status;
+	FT_STRUCT lcdInfo;
 	/*=====================================================
 	* Nota 1: cadd (cursor address) es una variable
 	* que contiene la dirección actual del cursor en el

@@ -2,13 +2,13 @@
 
 basicLCD::basicLCD()
 {
-	//lcdHandler = lcdInit(status);  // no hace falta pasarle el numero de lcd. Pasa status por referencia para el initOk
+	//lcdInfo.lcdHandler = lcdInit(status);  // no hace falta pasarle el numero de lcd. Pasa status por referencia para el initOk
 	cadd = 1;
 }
 
 basicLCD::~basicLCD()
 {
-	lcdHandler = nullptr;
+	lcdInfo.lcdHandler = nullptr;
 }
 
 void basicLCD::lcdUpdateCursor()
