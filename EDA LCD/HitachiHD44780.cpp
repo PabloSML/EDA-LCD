@@ -66,12 +66,27 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 	}
 	return *this;
 }
-/*
+
 basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 {
+	int index = 0;
+	int length = 0;
 
+	while (c[index] != NULL)
+		length++;
+
+	if (length > LONG_MAX_DISPLAY)	//si excede la cantidad maxima de caracteres que puede mostrar fisicamente el display
+		index = length - LONG_MAX_DISPLAY; //solo se muestran los ultimos LONG_MAX_DISPLAY caracteres
+
+	while (c[index] != NULL)
+	{
+		*this << c[index]; 
+	}
+	//el cursor ya queda actualizado
+	return *this;
 }
-*/
+
+/*
 bool HitachiHD44780::lcdMoveCursorUp()
 {
 
