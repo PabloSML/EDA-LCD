@@ -7,7 +7,7 @@ using namespace std;
 
 HitachiHD44780::HitachiHD44780() : basicLCD()
 {
-	if (lcdInfo.status == FT_OK)
+	if (FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr) == FT_OK)
 		cout << "Hitachi display constructed succesfully" << endl;
 	else
 		cout << "There was an error constructing the Hitachi display" << endl;
@@ -15,24 +15,23 @@ HitachiHD44780::HitachiHD44780() : basicLCD()
 
 HitachiHD44780::~HitachiHD44780()
 {
-	lcdInfo.lcdHandler = nullptr;
 	cout << "Hitachi display destroyed" << endl;
 }
 bool HitachiHD44780::lcdInitOk()
 {
-	return FT_SUCCESS(this->lcdInfo.status);
+	return FT_SUCCESS(FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr));
 }
 FT_STATUS HitachiHD44780::lcdGetError()
 {
-	return lcdInfo.status;
+	return FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr);
 }
 
 bool HitachiHD44780::lcdClear()
 {
 	bool clearSuccess = false;
-	lcdWriteIR(lcdInfo, LCD_CLEAR);
+	lcdWriteIR(lcdHandler, LCD_CLEAR);
 	cadd = 1;
-	if (lcdInfo.status == FT_OK)
+	if (FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr) == FT_OK)
 	{
 		cout << "LCD Clear successful" << endl;
 		clearSuccess = true;
@@ -57,12 +56,12 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 {
 
 }
-
+*/
 bool HitachiHD44780::lcdMoveCursorUp()
 {
 
 }
-
+/*
 bool HitachiHD44780::lcdMoveCursorDown()
 {
 
