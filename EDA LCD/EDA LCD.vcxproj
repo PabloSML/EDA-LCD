@@ -130,10 +130,12 @@
     <ClInclude Include="basicLCD.h" />
     <ClInclude Include="ftd2xx.h" />
     <ClInclude Include="HitachiHD44780.h" />
+    <ClInclude Include="HitachiHD44780Driver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basicLCD.cpp" />
     <ClCompile Include="HitachiHD44780.cpp" />
+    <ClCompile Include="HitachiHD44780Driver.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
