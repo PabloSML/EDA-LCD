@@ -2,6 +2,7 @@
 #include<windows.h>
 #define FTD2XX_EXPORTS
 #include "ftd2xx.h"
+//#include ""  aca va incluido el modulo de bajo nivel de gonza con lcdInit
 
 struct cursorPosition
 {
