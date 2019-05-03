@@ -1,5 +1,8 @@
 #pragma once
 #include "basicLCD.h"
+
+
+
 class HitachiHD44780 :
 	public basicLCD
 {

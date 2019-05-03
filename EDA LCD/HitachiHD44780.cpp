@@ -41,17 +41,28 @@ bool HitachiHD44780::lcdClear()
 
 	return clearSuccess;
 }
-/*
+
 bool HitachiHD44780::lcdClearToEOL()
 {
+	int cadd_backUp = this->cadd;
+	int end_current_Line = this->cadd < FIRST_SEC_LINE ? END_FIRST_LINE : END_SECOND_LINE; //modificar define
 
+	while (this->cadd <= end_current_Line  && FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr) == FT_OK)
+		*this << ' ';
+
+	this->cadd = cadd_backUp;	//recupero estado original del cursor
+
+	return FT_SUCCESS(FT_GetStatus(lcdHandler, nullptr, nullptr, nullptr));
 }
 
 basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 {
-
+	lcdWriteDR(lcdHandler, c);
+	if (++cadd > END_SECOND_LINE) { cadd = HOME; }	//ni idea el nombre de los define
+	lcdUpdateCursor();
+	return *this;
 }
-
+/*
 basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 {
 
