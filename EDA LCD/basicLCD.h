@@ -164,6 +164,10 @@ protected:
 	*=====================================================*/
 	FT_HANDLE lcdHandler;
 	/*=====================================================
+	* DWORD dump que permite la utilizacion de FT_getStatus
+	*=====================================================*/
+	DWORD dump;
+	/*=====================================================
 	* Nota 1: cadd (cursor address) es una variable
 	* que contiene la dirección actual del cursor en el
 	* display+1. Esta variable es necesaria pues no podemos
