@@ -4,9 +4,6 @@
 #include "HitachiHD44780.h"
 using namespace std;
 
-// Ir descomentando a medida que se hacen
-
-
 HitachiHD44780::HitachiHD44780() : basicLCD()
 {
 	if (FT_GetStatus(lcdHandler, &dump, &dump, &dump) == FT_OK)
@@ -61,13 +58,12 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 {
 	if (isprint(c))
 	{
-		lcdWriteDR(&lcdHandler, c);
+		lcdWriteDR(&lcdHandler, c);	// la funcion de write modifica automaticamente el cursor del display, solo hay que cambiar el cadd
 		if (++cadd > END_SECOND_LINE) 
 		{ 
 			cadd = LCD_RETURN_HOME;
-		}	//ni idea el nombre de los define
-
-		lcdUpdateCursor();
+		}	
+		oldCadd = cadd;	// al actualizarse el cadd se debe sincronizar el oldCadd
 	}
 	return *this;
 }

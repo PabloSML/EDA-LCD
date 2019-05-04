@@ -25,4 +25,6 @@ basicLCD::~basicLCD()
 void basicLCD::lcdUpdateCursor()
 {
 	int offset = cadd - oldCadd;
+
+
 }

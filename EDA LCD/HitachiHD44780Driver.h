@@ -30,15 +30,19 @@
 
 #define LCD_WRITE_DATA (LCD_RS_HIGH)
 #define LCD_CLEAR (0x01) 
+#define LCD_CURSOR_R (0x14)
+#define LCD_CURSOR_L (0x10)
+#define LCD_DISPLAY_SHIFT_R (0x1B)
+#define LCD_DISPLAY_SHIFT_L (0x18)
 #define LCD_RETURN_HOME (0x02)
 #define LCD_FUNCTION_SET_8B_2L_5X8 (0x38)
 #define LCD_FUNCTION_SET_4B_2L_5X8 (0x28)
 
-#define LONG_MAX_DISPLAY (31)
-#define START_FIRST_LINE (0)
-#define END_FIRST_LINE	 (15)
-#define FIRST_SECOND_LINE	(16)
-#define END_SECOND_LINE	(31)
+#define LONG_MAX_DISPLAY (32)
+#define START_FIRST_LINE (1)
+#define END_FIRST_LINE	 (16)
+#define FIRST_SECOND_LINE (17)
+#define END_SECOND_LINE	(32)
 #define LINE_LENGHT (16)
 
 
