@@ -5,7 +5,7 @@
 FT_HANDLE* lcdInit()
 {
 	FT_STATUS status = !FT_OK;
-	FT_HANDLE lcdHandle = nullptr;
+	FT_HANDLE* lcdHandle = new FT_HANDLE;
 
 	std::chrono::seconds MaxTime(CONNECTING_TIME);
 	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
@@ -13,26 +13,27 @@ FT_HANDLE* lcdInit()
 
 	while (status != FT_OK && ((current - start) < MaxTime))//loop till succesful connection o max connecting time is exceeded
 	{
-		status = FT_OpenEx((void *)MY_LCD_DESCRIPTION, FT_OPEN_BY_DESCRIPTION, &lcdHandle);
+		status = FT_OpenEx((void *)MY_LCD_DESCRIPTION, FT_OPEN_BY_DESCRIPTION, lcdHandle);
 
 		if (status == FT_OK)
 		{
 			UCHAR Mask = ALL_PINS_OUTPUT;	//Selects all FTDI pins.
 			UCHAR Mode = ASYNCHRONOUS_BIT_BANG; 	// Set asynchronous bit-bang mode
-			if (FT_SetBitMode(lcdHandle, Mask, Mode) == FT_OK)
+			if (FT_SetBitMode(*lcdHandle, Mask, Mode) == FT_OK)
 			{
 				//Iniciliazate display
 			}
 		}
 		current = std::chrono::system_clock::now();
 	}
-	return &lcdHandle;
+	return lcdHandle;
 }
 
-FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)
+FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)	// agregue cosas obligatorias pero quizas faltan cosas
 {
+	FT_Close(*deviceHandler);
 	FT_STATUS status = FT_OK;
-
+	delete deviceHandler;
 	return status;
 }
 

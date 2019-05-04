@@ -162,7 +162,7 @@ protected:
 	/*=====================================================
 	* Handler del LCD utilizado por el modulo FTDI 
 	*=====================================================*/
-	FT_HANDLE lcdHandler;
+	FT_HANDLE* lcdHandler;
 	/*=====================================================
 	* DWORD dump que permite la utilizacion de FT_getStatus
 	*=====================================================*/
