@@ -5,7 +5,7 @@ using namespace std;
 basicLCD::basicLCD()
 {
 	lcdHandler = lcdInit();  // no hace falta pasarle el numero de lcd.
-	cadd = 1;
+	cadd = oldCadd = 1;
 	if (FT_GetStatus(lcdHandler, &dump, &dump, &dump) == FT_OK)
 		cout << "Basic LCD constructed successfully" << endl;
 	else
@@ -24,5 +24,5 @@ basicLCD::~basicLCD()
 
 void basicLCD::lcdUpdateCursor()
 {
-
+	int offset = cadd - oldCadd;
 }
