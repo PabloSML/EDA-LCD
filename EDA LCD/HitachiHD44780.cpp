@@ -59,7 +59,7 @@ bool HitachiHD44780::lcdClearToEOL()
 
 basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 {
-	if (isalnum(c))
+	if (isprint(c))
 	{
 		lcdWriteDR(&lcdHandler, c);
 		if (++cadd > END_SECOND_LINE) 
@@ -74,17 +74,19 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 
 basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 {
-	int index = 0; // no creo que haga falta
+	int index = 0;
 	int length = strlen((const char*)c);
 
 	if (length > LONG_MAX_DISPLAY)	//si excede la cantidad maxima de caracteres que puede mostrar fisicamente el display
-		index = length - LONG_MAX_DISPLAY; //solo se muestran los ultimos LONG_MAX_DISPLAY caracteres
-
-	// ??? no entiendo. no deberia ser lenght = LONG_MAX_DISPLAY y despues se muestra hasta ahi??
-
-	for(int i = 0; i < length; i++)
 	{
-		*this << c[i]; 
+		cadd = HOME;						//me aseguro que el cursor este en el inicio para mostrar los 32 caracteres correctamente
+		lcdUpdateCursor();
+		index = length - LONG_MAX_DISPLAY; //solo se muestran los ultimos 32 caracteres
+	}
+
+	for(index; index < length; index++)
+	{
+		*this << c[index];				//el filtrado de caracteres se hace en la sobrecarga de 1 caracter
 	}
 	//el cursor ya queda actualizado
 	return *this;
