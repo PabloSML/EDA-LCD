@@ -47,7 +47,7 @@ bool HitachiHD44780::lcdClear()
 bool HitachiHD44780::lcdClearToEOL()
 {
 	int cadd_backUp = this->cadd;
-	int end_current_Line = this->cadd < FIRST_SEC_LINE ? END_FIRST_LINE : END_SECOND_LINE; //modificar define
+	int end_current_Line = this->cadd < FIRST_SECOND_LINE ? END_FIRST_LINE : END_SECOND_LINE; //modificar define
 
 	while (this->cadd <= end_current_Line  && FT_GetStatus(lcdHandler, &dump, &dump, &dump) == FT_OK)
 		*this << ' ';
@@ -64,7 +64,7 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 		lcdWriteDR(&lcdHandler, c);
 		if (++cadd > END_SECOND_LINE) 
 		{ 
-			cadd = HOME; 
+			cadd = LCD_RETURN_HOME;
 		}	//ni idea el nombre de los define
 
 		lcdUpdateCursor();
@@ -79,7 +79,7 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char* c)
 
 	if (length > LONG_MAX_DISPLAY)	//si excede la cantidad maxima de caracteres que puede mostrar fisicamente el display
 	{
-		cadd = HOME;						//me aseguro que el cursor este en el inicio para mostrar los 32 caracteres correctamente
+		cadd = LCD_RETURN_HOME;						//me aseguro que el cursor este en el inicio para mostrar los 32 caracteres correctamente
 		lcdUpdateCursor();
 		index = length - LONG_MAX_DISPLAY; //solo se muestran los ultimos 32 caracteres
 	}

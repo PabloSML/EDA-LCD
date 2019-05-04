@@ -4,7 +4,7 @@
 
 FT_HANDLE* lcdInit()
 {
-	/*FT_STATUS status = !FT_OK;
+	FT_STATUS status = !FT_OK;
 	FT_HANDLE lcdHandle = nullptr;
 
 	std::chrono::seconds MaxTime(CONNECTING_TIME);
@@ -26,12 +26,14 @@ FT_HANDLE* lcdInit()
 		}
 		current = std::chrono::system_clock::now();
 	}
-	return &lcdHandle;*/
+	return &lcdHandle;
 }
 
 FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)
 {
+	FT_STATUS status = FT_OK;
 
+	return status;
 }
 
 
@@ -53,7 +55,7 @@ void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE rs)
 }
 int changeRegister(void)
 {
-
+	return 0;
 }
 /*
 int print2LCD(void)

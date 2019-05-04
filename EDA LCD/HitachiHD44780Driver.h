@@ -12,6 +12,41 @@
 #define ASYNCHRONOUS_BIT_BANG (1)
 #define ALL_PINS_OUTPUT (0Xff)
 
+#define PORT_PIN_0 (0)
+#define	PORT_PIN_1 (1)
+#define PORT_PIN_4 (4)
+#define PORT_PIN_5 (5)
+#define PORT_PIN_6 (6)
+#define PORT_PIN_7 (7)
+#define PORT_PIN_8 (8)
+
+#define LCD_EN  (1 << PORT_PIN_0)
+#define LCD_RS  (1 << PORT_PIN_1)
+
+#define LCD_RS_HIGH (LCD_RS)
+#define LCD_RS_LOW (LCD_RS ^ LCD_RS)
+#define LCD_EN_HIGH  (LCD_EN)
+#define LCD_EN_LOW  (LCD_EN ^ LCD_EN)
+
+#define LCD_WRITE_DATA (LCD_RS_HIGH)
+#define LCD_CLEAR (0x01) 
+#define LCD_RETURN_HOME (0x02)
+#define LCD_FUNCTION_SET_8B_2L_5X8 (0x38)
+#define LCD_FUNCTION_SET_4B_2L_5X8 (0x28)
+
+#define LONG_MAX_DISPLAY (31)
+#define START_FIRST_LINE (0)
+#define END_FIRST_LINE	 (15)
+#define FIRST_SECOND_LINE	(16)
+#define END_SECOND_LINE	(31)
+#define LINE_LENGHT (16)
+
+
+
+
+
+
+
 FT_HANDLE* lcdInit();
 FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler);
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE valor);
