@@ -14,7 +14,7 @@ basicLCD::basicLCD()
 
 basicLCD::~basicLCD()
 {
-	FT_STATUS closing = lcdDeinit(lcdHandler);
+	FT_STATUS closing = lcdDeinit(&lcdHandler);
 	if (closing == FT_OK)
 		cout << "Basic LCD destroyed successfully" << endl;
 	else

@@ -2,7 +2,7 @@
 
 
 
-FT_HANDLE* lcdInit(int iDevice)
+FT_HANDLE* lcdInit()
 {
 	/*FT_STATUS status = !FT_OK;
 	FT_HANDLE lcdHandle = nullptr;
@@ -29,6 +29,10 @@ FT_HANDLE* lcdInit(int iDevice)
 	return &lcdHandle;*/
 }
 
+FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)
+{
+
+}
 
 
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE valor)

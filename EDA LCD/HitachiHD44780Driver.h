@@ -12,7 +12,8 @@
 #define ASYNCHRONOUS_BIT_BANG (1)
 #define ALL_PINS_OUTPUT (0Xff)
 
-FT_HANDLE* lcdInit(int iDevice);
+FT_HANDLE* lcdInit();
+FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler);
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE valor);
 void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE valor);
 void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value);
