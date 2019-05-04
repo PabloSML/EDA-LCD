@@ -29,7 +29,8 @@
 #define LCD_EN_LOW  (LCD_EN ^ LCD_EN)
 
 #define LCD_WRITE_DATA (LCD_RS_HIGH)
-#define LCD_CLEAR (0x01) 
+#define LCD_CLEAR (0x01)
+#define LCD_SET_DDRAM_ADD (0x80)
 #define LCD_CURSOR_R (0x14)
 #define LCD_CURSOR_L (0x10)
 #define LCD_DISPLAY_SHIFT_R (0x1B)
@@ -45,7 +46,7 @@
 #define END_SECOND_LINE	(32)
 #define LINE_LENGHT (16)
 
-
+#define DDRAM_LINE_OFFSET (0x40)
 
 
 

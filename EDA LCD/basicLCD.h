@@ -179,13 +179,6 @@ protected:
 	*=====================================================*/
 	int cadd;
 	/*=====================================================
-	* oldCadd (old cursor address) es una variable
-	* que contiene la dirección anterior del cursor en el
-	* display+1. Esto permite calcular el offset respecto
-	* de la nueva direccion a la cual se busca llegar
-	*=====================================================*/
-	int oldCadd;
-	/*=====================================================
 	* Name: lcdUpdateCursor ver NOTA 2
 	* Entra: -
 	* Resulta: Posiciona el cursor del display en la posición

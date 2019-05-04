@@ -63,7 +63,6 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 		{ 
 			cadd = LCD_RETURN_HOME;
 		}	
-		oldCadd = cadd;	// al actualizarse el cadd se debe sincronizar el oldCadd
 	}
 	return *this;
 }
