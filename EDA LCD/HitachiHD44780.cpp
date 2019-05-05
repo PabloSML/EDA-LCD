@@ -28,7 +28,7 @@ FT_STATUS HitachiHD44780::lcdGetError()
 bool HitachiHD44780::lcdClear()
 {
 	bool clearSuccess = false;
-	lcdWriteIR(lcdHandler, LCD_CLEAR);
+	lcdWriteIR(lcdHandler, LCD_CLEAR_SCREEN);
 	cadd = 1;
 	if (FT_GetStatus(*lcdHandler, &dump, &dump, &dump) == FT_OK)
 	{

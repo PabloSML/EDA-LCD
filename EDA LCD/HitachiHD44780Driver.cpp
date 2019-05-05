@@ -21,48 +21,66 @@ FT_HANDLE* lcdInit(void)
 			UCHAR Mode = ASYNCHRONOUS_BIT_BANG; 	// Set asynchronous bit-bang mode
 			if (FT_SetBitMode(*lcdHandle, Mask, Mode) == FT_OK)
 			{
-				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(15);
-				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(5);
-				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
-				lcdWriteNibble(&lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
-				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteIR(lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8);
 				Sleep(1);
-				lcdWriteIR(&lcdHandle, LCD_DISPLAY_CONTROL_OFF);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8 | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteIR(lcdHandle, LCD_DISPLAY_CONTROL_OFF);
 				Sleep(1);
-				lcdWriteIR(&lcdHandle, LCD_CLEAR_SCREEN);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_DISPLAY_CONTROL_OFF); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteIR(lcdHandle, LCD_CLEAR_SCREEN);
 				Sleep(1);
-				lcdWriteIR(&lcdHandle, LCD_ENTRY_MODE_SET);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_CLEAR_SCREEN | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteIR(lcdHandle, LCD_ENTRY_MODE_SET);
 				Sleep(1);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_ENTRY_MODE_SET); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 			}
 		}
+		else
+			std::cout << "Couldn't inicializate FTDI" << std::endl;
 		current = std::chrono::system_clock::now();
 	}
 	return lcdHandle;
 }
 
-FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)	// agregue cosas obligatorias pero quizas faltan cosas
+FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)	
 {
-	FT_Close(*deviceHandler);
-	FT_STATUS status = FT_OK;
+	FT_STATUS status = FT_Close(*deviceHandler);
 	delete deviceHandler;
 	return status;
 }
 
 
-void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE valor)
+void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE value)
 {
-
+	printf("Escribiendo IR:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	value = (value & 0xf0) | LCD_RS_LOW ;
+	lcdWriteNibble(deviceHandler,value);
+	value = ((value << 4) & 0xf0) | LCD_RS_LOW;
+	lcdWriteNibble(deviceHandler, value);
 }
-void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE valor)
+
+void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE value)
 {
-
+	printf("Escribiendo DR:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	value = (value & 0xf0) | LCD_RS_HIGH;
+	lcdWriteNibble(deviceHandler, value);
+	value = ((value << 4) & 0xf0) | LCD_RS_HIGH;
+	lcdWriteNibble(deviceHandler, value);
 }
 
-void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE rs)
+void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE registerSelect)
 {
 
 }
@@ -70,14 +88,19 @@ void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE rs)
 void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
 {
 	DWORD bytesWritten;
-	if (FT_Write(deviceHandler, &value, sizeof(value), &bytesWritten) == FT_OK)
-	{
-		std::cout << "Escritura correcta" << std::endl;
-	}
-	else
-	{
-		std::cout << "Error de escritura" << std::endl;
-	}
+
+	value = value | LCD_EN_LOW;
+	FT_Write(deviceHandler, &value , sizeof(LCD_EN_LOW), &bytesWritten);
+	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+
+	value = value | LCD_EN_HIGH;
+	FT_Write(deviceHandler, &value, sizeof(value), &bytesWritten);
+	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+
+	Sleep(5);
+	value = value | LCD_EN_LOW;
+	FT_Write(deviceHandler, &value, sizeof(LCD_EN_LOW), &bytesWritten);
+	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 }
 
 /*

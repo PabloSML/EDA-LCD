@@ -1,8 +1,9 @@
 #ifndef HITACHIHD44780DRIVER_H
 #define HITACHIHD44780DRIVER_H
 
-#include<cstdio>
-#include<windows.h>
+#include <iostream>
+#include <cstdio>
+#include <windows.h>
 #include <chrono>
 #define FTD2XX_EXPORTS
 #include "ftd2xx.h"
@@ -29,7 +30,7 @@
 #define LCD_EN_LOW  (LCD_EN ^ LCD_EN)
 
 #define LCD_WRITE_DATA (LCD_RS_HIGH)
-#define LCD_CLEAR (0x01)
+#define LCD_CLEAR_SCREEN (0x01)
 #define LCD_SET_DDRAM_ADD (0x80)
 #define LCD_CURSOR_R (0x14)
 #define LCD_CURSOR_L (0x10)
@@ -38,6 +39,10 @@
 #define LCD_RETURN_HOME (0x02)
 #define LCD_FUNCTION_SET_8B_2L_5X8 (0x38)
 #define LCD_FUNCTION_SET_4B_2L_5X8 (0x28)
+#define LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE (LCD_FUNCTION_SET_8B_2L_5X8 & 0xf0)
+#define LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE (LCD_FUNCTION_SET_4B_2L_5X8 & 0xf0)
+#define LCD_DISPLAY_CONTROL_OFF (0x08)
+#define LCD_ENTRY_MODE_SET (0x09)
 
 #define LONG_MAX_DISPLAY (32)
 #define START_FIRST_LINE (1)
