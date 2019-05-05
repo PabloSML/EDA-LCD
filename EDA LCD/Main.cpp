@@ -24,6 +24,6 @@ int main()
 
 
 	std::system("pause");	//solo para ver los couts,DEBBUG BORRAR DESPUES
-
+	lcdDeinit(handle);
 	return 0;
 }
