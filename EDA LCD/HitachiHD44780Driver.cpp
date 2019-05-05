@@ -21,11 +21,12 @@ FT_HANDLE* lcdInit(void)
 			UCHAR Mode = ASYNCHRONOUS_BIT_BANG; 	// Set asynchronous bit-bang mode
 			if (FT_SetBitMode(*lcdHandle, Mask, Mode) == FT_OK)
 			{
-				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(15);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(5);
+				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
+				Sleep(1);
 				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
@@ -40,10 +41,9 @@ FT_HANDLE* lcdInit(void)
 				Sleep(1);
 				printf("iniciando:se envio el comando %d al lcd\n", LCD_DISPLAY_CONTROL_OFF); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_CLEAR_SCREEN);
-				Sleep(1);
+				Sleep(10);
 				printf("iniciando:se envio el comando %d al lcd\n", LCD_CLEAR_SCREEN | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_ENTRY_MODE_SET);
-				Sleep(1);
 				printf("iniciando:se envio el comando %d al lcd\n", LCD_ENTRY_MODE_SET); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 			}
 		}
