@@ -27,6 +27,7 @@
 #define LCD_RS_HIGH (LCD_RS)
 #define LCD_RS_LOW (LCD_RS ^ LCD_RS)
 #define LCD_EN_HIGH  (LCD_EN)
+#define LCD_NOT_EN_HIGH  (~LCD_EN)
 #define LCD_EN_LOW  (LCD_EN ^ LCD_EN)
 
 #define LCD_WRITE_DATA (LCD_RS_HIGH)

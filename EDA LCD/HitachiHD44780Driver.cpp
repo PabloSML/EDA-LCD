@@ -24,27 +24,27 @@ FT_HANDLE* lcdInit(void)
 				Sleep(15);
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(5);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_FUNCTION_SET_8B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteNibble(lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW);
 				Sleep(1);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8);
 				Sleep(1);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8 | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_FUNCTION_SET_4B_2L_5X8 | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_DISPLAY_CONTROL_OFF);
 				Sleep(1);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_DISPLAY_CONTROL_OFF); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_DISPLAY_CONTROL_OFF); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_CLEAR_SCREEN);
 				Sleep(10);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_CLEAR_SCREEN | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_CLEAR_SCREEN | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_ENTRY_MODE_SET);
-				printf("iniciando:se envio el comando %d al lcd\n", LCD_ENTRY_MODE_SET); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_ENTRY_MODE_SET); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 			}
 		}
 		else
@@ -64,7 +64,7 @@ FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)
 
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE value)
 {
-	printf("Escribiendo IR:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	printf("Escribiendo IR:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 	value = (value & 0xf0) | LCD_RS_LOW ;
 	lcdWriteNibble(deviceHandler,value);
 	value = ((value << 4) & 0xf0) | LCD_RS_LOW;
@@ -73,7 +73,7 @@ void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE value)
 
 void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE value)
 {
-	printf("Escribiendo DR:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	printf("Escribiendo DR:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 	value = (value & 0xf0) | LCD_RS_HIGH;
 	lcdWriteNibble(deviceHandler, value);
 	value = ((value << 4) & 0xf0) | LCD_RS_HIGH;
@@ -91,16 +91,16 @@ void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
 
 	value = value | LCD_EN_LOW;
 	FT_Write(deviceHandler, &value , sizeof(LCD_EN_LOW), &bytesWritten);
-	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 
 	value = value | LCD_EN_HIGH;
 	FT_Write(deviceHandler, &value, sizeof(value), &bytesWritten);
-	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 
 	Sleep(5);
-	value = value | LCD_EN_LOW;
+	value = value & (LCD_NOT_EN_HIGH);
 	FT_Write(deviceHandler, &value, sizeof(LCD_EN_LOW), &bytesWritten);
-	printf("Envio a lcd:se envio el comando %d al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 }
 
 /*
