@@ -64,20 +64,22 @@ FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler)
 
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE value)
 {
+	BYTE tempValue;
 	printf("Escribiendo IR:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
-	value = (value & 0xf0) | LCD_RS_LOW ;
-	lcdWriteNibble(deviceHandler,value);
-	value = ((value << 4) & 0xf0) | LCD_RS_LOW;
-	lcdWriteNibble(deviceHandler, value);
+	tempValue = (value & 0xf0) | LCD_RS_LOW ;
+	lcdWriteNibble(deviceHandler,tempValue);
+	tempValue = ((value << 4) & 0xf0) | LCD_RS_LOW;
+	lcdWriteNibble(deviceHandler, tempValue);
 }
 
 void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE value)
 {
+	BYTE tempValue;
 	printf("Escribiendo DR:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
-	value = (value & 0xf0) | LCD_RS_HIGH;
-	lcdWriteNibble(deviceHandler, value);
-	value = ((value << 4) & 0xf0) | LCD_RS_HIGH;
-	lcdWriteNibble(deviceHandler, value);
+	tempValue = (value & 0xf0) | LCD_RS_HIGH;
+	lcdWriteNibble(deviceHandler, tempValue);
+	tempValue = ((value << 4) & 0xf0) | LCD_RS_HIGH;
+	lcdWriteNibble(deviceHandler, tempValue);
 }
 
 void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE registerSelect)
@@ -90,16 +92,16 @@ void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
 	DWORD bytesWritten;
 
 	value = value | LCD_EN_LOW;
-	FT_Write(deviceHandler, &value , sizeof(LCD_EN_LOW), &bytesWritten);
+	FT_Write(deviceHandler, &value , 1, &bytesWritten);
 	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 
 	value = value | LCD_EN_HIGH;
-	FT_Write(deviceHandler, &value, sizeof(value), &bytesWritten);
+	FT_Write(deviceHandler, &value, 1, &bytesWritten);
 	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 
 	Sleep(5);
 	value = value & (LCD_NOT_EN_HIGH);
-	FT_Write(deviceHandler, &value, sizeof(LCD_EN_LOW), &bytesWritten);
+	FT_Write(deviceHandler, &value, 1, &bytesWritten);
 	printf("Envio a lcd:se envio el comando %x al lcd\n", value); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 }
 
