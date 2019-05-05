@@ -6,7 +6,14 @@ int main()
 	//,DEBBUG BORRAR DESPUES******************************************************
 	FT_HANDLE* handle = nullptr;
 	handle = lcdInit();
+	Sleep(100);
+	lcdWriteIR(handle, LCD_CLEAR_SCREEN);
+	Sleep(100);
+	lcdWriteIR(handle, 0x0e);
+	lcdWriteIR(handle, LCD_RETURN_HOME);
+	lcdWriteIR(handle, LCD_CLEAR_SCREEN);
 	std::cout << "*******************se inicio el display*********************" << std::endl;
+
 	lcdWriteDR(handle, 'h');
 	lcdWriteDR(handle, 'o');
 	lcdWriteDR(handle, 'l');
