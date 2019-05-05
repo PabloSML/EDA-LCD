@@ -2,7 +2,7 @@
 
 
 
-FT_HANDLE* lcdInit()
+FT_HANDLE* lcdInit(void)
 {
 	FT_STATUS status = !FT_OK;
 	FT_HANDLE lcdHandle = nullptr;
@@ -21,7 +21,22 @@ FT_HANDLE* lcdInit()
 			UCHAR Mode = ASYNCHRONOUS_BIT_BANG; 	// Set asynchronous bit-bang mode
 			if (FT_SetBitMode(lcdHandle, Mask, Mode) == FT_OK)
 			{
-				//Iniciliazate display
+				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				Sleep(15);
+				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				Sleep(5);
+				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_8B_2L_5X8);
+				Sleep(1);
+				lcdWriteNibble(&lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE);
+				Sleep(1);
+				lcdWriteIR(&lcdHandle, LCD_FUNCTION_SET_4B_2L_5X8);
+				Sleep(1);
+				lcdWriteIR(&lcdHandle, LCD_DISPLAY_CONTROL_OFF);
+				Sleep(1);
+				lcdWriteIR(&lcdHandle, LCD_CLEAR_SCREEN);
+				Sleep(1);
+				lcdWriteIR(&lcdHandle, LCD_ENTRY_MODE_SET);
+				Sleep(1);
 			}
 		}
 		current = std::chrono::system_clock::now();
@@ -45,18 +60,25 @@ void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE valor)
 {
 
 }
-void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
-{
 
-}
 void lcdWriteByte(FT_HANDLE * deviceHandler, BYTE value, BYTE rs)
 {
 
 }
-int changeRegister(void)
+
+void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
 {
-	return 0;
+	DWORD bytesWritten;
+	if (FT_Write(deviceHandler, &value, sizeof(value), &bytesWritten) == FT_OK)
+	{
+		std::cout << "Escritura correcta" << std::endl;
+	}
+	else
+	{
+		std::cout << "Error de escritura" << std::endl;
+	}
 }
+
 /*
 int print2LCD(void)
 {
