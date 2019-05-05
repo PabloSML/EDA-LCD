@@ -20,10 +20,12 @@ int main()
 	//,DEBBUG BORRAR DESPUES*************************************************
 
 
-
-
-
 	std::system("pause");	//solo para ver los couts,DEBBUG BORRAR DESPUES
-
+	FT_STATUS closing = lcdDeinit(handle);
+	if (closing == FT_OK)
+		std::cout << "cerro bien" << std::endl;
+	else
+		std::cout << "cerro mal" << std::endl;
+	std::system("pause");
 	return 0;
 }
