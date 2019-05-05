@@ -91,17 +91,25 @@ void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value)
 {
 	DWORD bytesWritten;
 	BYTE temp;
+	FT_STATUS  status = !FT_OK;;
 	temp = value | LCD_EN_LOW;
-	FT_Write(*deviceHandler, &temp, 1, &bytesWritten);
+	status = FT_Write(deviceHandler, &temp, 1, &bytesWritten);
+	if (status == FT_OK)
+		printf("El dato se escribio correctamente");
 	printf("Envio a lcd:se envio el comando %x al lcd\n", temp); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+	status = !FT_OK;
 
 	temp = value | LCD_EN_HIGH;
-	FT_Write(*deviceHandler, &temp, 1, &bytesWritten);
+	status =  FT_Write(deviceHandler, &temp, 1, &bytesWritten);
+	if (status == FT_OK)
+		printf("El dato se escribio correctamente");
 	printf("Envio a lcd:se envio el comando %x al lcd\n", temp); //solo para imprimir valor,DEBBUG BORRAR DESPUES
-
+	status = !FT_OK;
 	Sleep(5);
 	temp = value & (LCD_NOT_EN_HIGH);
-	FT_Write(*deviceHandler, &temp, 1, &bytesWritten);
+	status = FT_Write(deviceHandler, &temp, 1, &bytesWritten);
+	if (status == FT_OK)
+		printf("El dato se escribio correctamente");
 	printf("Envio a lcd:se envio el comando %x al lcd\n", temp); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 }
 
