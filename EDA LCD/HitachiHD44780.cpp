@@ -59,12 +59,12 @@ basicLCD& HitachiHD44780::operator<<(const unsigned char c)
 	if (isprint(c))
 	{
 		lcdWriteDR(lcdHandler, c);	// la funcion de write modifica automaticamente el cursor del display, solo hay que cambiar el cadd
-		if (cadd + 1 > END_FIRST_LINE)	// si se acaba de escribir en la ultima posicion de la primera linea, es necesario mover el cursor manualmente para saltear el gap
+		if (cadd == END_FIRST_LINE)	// si se acaba de escribir en la ultima posicion de la primera linea, es necesario mover el cursor manualmente para saltear el gap
 		{
 			cadd++;
 			lcdUpdateCursor();
 		}
-		else if (cadd + 1 > END_SECOND_LINE)	// si se acaba de escribir en la ultima posicion, se devuelve el cursor a la primera
+		else if (cadd == END_SECOND_LINE)	// si se acaba de escribir en la ultima posicion, se devuelve el cursor a la primera
 		{
 			cadd = 1;
 			lcdWriteIR(lcdHandler, LCD_RETURN_HOME);

@@ -27,5 +27,5 @@ void basicLCD::lcdUpdateCursor()
 	if (cadd <= END_FIRST_LINE)
 		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | (cadd-1));
 	else
-		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | DDRAM_LINE_OFFSET | (cadd-1));
+		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | DDRAM_LINE_OFFSET | ((cadd-1) % LINE_LENGHT));
 }

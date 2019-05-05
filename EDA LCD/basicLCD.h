@@ -158,11 +158,11 @@ public:
 	*=====================================================*/
 	virtual cursorPosition lcdGetCursorPosition() = 0;
 
-protected:
 	/*=====================================================
 	* Handler del LCD utilizado por el modulo FTDI 
 	*=====================================================*/
 	FT_HANDLE* lcdHandler;
+protected:
 	/*=====================================================
 	* DWORD dump que permite la utilizacion de FT_getStatus
 	*=====================================================*/

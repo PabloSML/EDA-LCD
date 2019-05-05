@@ -45,6 +45,8 @@ FT_HANDLE* lcdInit(void)
 				printf("iniciando:se envio el comando %x al lcd\n", LCD_CLEAR_SCREEN | LCD_RS_LOW); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 				lcdWriteIR(lcdHandle, LCD_ENTRY_MODE_SET);
 				printf("iniciando:se envio el comando %x al lcd\n", LCD_ENTRY_MODE_SET); //solo para imprimir valor,DEBBUG BORRAR DESPUES
+				lcdWriteIR(lcdHandle, LCD_DISPLAY_CONTROL_ON);
+				printf("iniciando:se envio el comando %x al lcd\n", LCD_DISPLAY_CONTROL_ON); //solo para imprimir valor,DEBBUG BORRAR DESPUES
 			}
 		}
 		else
