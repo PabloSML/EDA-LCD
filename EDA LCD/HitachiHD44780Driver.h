@@ -1,9 +1,8 @@
 #ifndef HITACHIHD44780DRIVER_H
 #define HITACHIHD44780DRIVER_H
 
-#include <iostream>
-#include  <cstdio>
-#include <windows.h>
+#include<cstdio>
+#include<windows.h>
 #include <chrono>
 #define FTD2XX_EXPORTS
 #include "ftd2xx.h"
@@ -29,24 +28,25 @@
 #define LCD_EN_HIGH  (LCD_EN)
 #define LCD_EN_LOW  (LCD_EN ^ LCD_EN)
 
-#define LCD_WRITE_DATA (LCD_RS_HIGH | LCD_EN_LOW )
-#define LCD_WRITE_INSTRUCTION (LCD_RS_LOW | LCD_EN_LOW)
-#define LCD_CLEAR_SCREEN (0x01) 
+#define LCD_WRITE_DATA (LCD_RS_HIGH)
+#define LCD_CLEAR (0x01)
+#define LCD_SET_DDRAM_ADD (0x80)
+#define LCD_CURSOR_R (0x14)
+#define LCD_CURSOR_L (0x10)
+#define LCD_DISPLAY_SHIFT_R (0x1B)
+#define LCD_DISPLAY_SHIFT_L (0x18)
 #define LCD_RETURN_HOME (0x02)
 #define LCD_FUNCTION_SET_8B_2L_5X8 (0x38)
 #define LCD_FUNCTION_SET_4B_2L_5X8 (0x28)
-#define LCD_FUNCTION_SET_4B_2L_5X8_HIGH_NIBBLE ((LCD_FUNCTION_SET_4B_2L_5X8 & 0xf0) >> 4)
-#define LCD_DISPLAY_CONTROL_OFF (0X08)
-#define LCD_ENTRY_MODE_SET (0X07)
 
-#define LONG_MAX_DISPLAY (31)
-#define START_FIRST_LINE (0)
-#define END_FIRST_LINE	 (15)
-#define FIRST_SECOND_LINE	(16)
-#define END_SECOND_LINE	(31)
+#define LONG_MAX_DISPLAY (32)
+#define START_FIRST_LINE (1)
+#define END_FIRST_LINE	 (16)
+#define FIRST_SECOND_LINE (17)
+#define END_SECOND_LINE	(32)
 #define LINE_LENGHT (16)
 
-
+#define DDRAM_LINE_OFFSET (0x40)
 
 
 

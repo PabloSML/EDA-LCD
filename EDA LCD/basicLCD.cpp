@@ -5,8 +5,8 @@ using namespace std;
 basicLCD::basicLCD()
 {
 	lcdHandler = lcdInit();  // no hace falta pasarle el numero de lcd.
-	cadd = oldCadd = 1;
-	if (FT_GetStatus(lcdHandler, &dump, &dump, &dump) == FT_OK)
+	cadd = 1;
+	if (FT_GetStatus(*lcdHandler, &dump, &dump, &dump) == FT_OK)
 		cout << "Basic LCD constructed successfully" << endl;
 	else
 		cout << "Error constructing Basic LCD" << endl;
@@ -14,7 +14,7 @@ basicLCD::basicLCD()
 
 basicLCD::~basicLCD()
 {
-	FT_STATUS closing = lcdDeinit(&lcdHandler);
+	FT_STATUS closing = lcdDeinit(lcdHandler);
 	if (closing == FT_OK)
 		cout << "Basic LCD destroyed successfully" << endl;
 	else
@@ -24,5 +24,8 @@ basicLCD::~basicLCD()
 
 void basicLCD::lcdUpdateCursor()
 {
-	int offset = cadd - oldCadd;
+	if (cadd <= END_FIRST_LINE)
+		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | (cadd-1));
+	else
+		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | DDRAM_LINE_OFFSET | (cadd-1));
 }

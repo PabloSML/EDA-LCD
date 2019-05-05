@@ -162,7 +162,7 @@ protected:
 	/*=====================================================
 	* Handler del LCD utilizado por el modulo FTDI 
 	*=====================================================*/
-	FT_HANDLE lcdHandler;
+	FT_HANDLE* lcdHandler;
 	/*=====================================================
 	* DWORD dump que permite la utilizacion de FT_getStatus
 	*=====================================================*/
@@ -178,13 +178,6 @@ protected:
 	* El constructor la inicializa y asegura su sincronismo.
 	*=====================================================*/
 	int cadd;
-	/*=====================================================
-	* oldCadd (old cursor address) es una variable
-	* que contiene la dirección anterior del cursor en el
-	* display+1. Esto permite calcular el offset respecto
-	* de la nueva direccion a la cual se busca llegar
-	*=====================================================*/
-	int oldCadd;
 	/*=====================================================
 	* Name: lcdUpdateCursor ver NOTA 2
 	* Entra: -
