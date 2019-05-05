@@ -37,7 +37,7 @@
 #define LCD_EN  (1 << PORT_PIN_0)	//PIN 0 - LCD ENABLE
 #define LCD_RS  (1 << PORT_PIN_1)	//PIN 1 - LCD REGISTER SELECT
 
-//FUNCIONES DEL HITACHI HD44780
+//FUNCIONES DEL HITACHI HD44780 - ver hoja de datos
 #define LCD_RS_HIGH (LCD_RS)
 #define LCD_RS_LOW (LCD_RS ^ LCD_RS)
 #define LCD_EN_HIGH  (LCD_EN)
@@ -58,6 +58,7 @@
 #define LCD_DISPLAY_CONTROL_ON (0x0e)
 #define LCD_ENTRY_MODE_SET (0x06)
 
+//*************************************************FUNCIONES*************************************************
 FT_HANDLE* lcdInit();	//Inicia la comunicacion con el LCD  y realiza la rutina de inicio
 FT_STATUS lcdDeinit(FT_HANDLE * deviceHandler);	//Destruye el handle del FTDI 
 void lcdWriteIR(FT_HANDLE * deviceHandler, BYTE valor);		//Administra la instruccion para enviarselo al LCD - 4 BITS MODE
@@ -65,6 +66,7 @@ void lcdWriteDR(FT_HANDLE * deviceHandler, BYTE valor);		//Administra el dato pa
 void lcdWriteNibble(FT_HANDLE * deviceHandler, BYTE value);		//Envia el nibble al LCD 
 
 //Se desestimo el uso de la funcion lcdWritebyte ya que la conexion siempre se hara con el driver FTDI, por lo tanto
-//la parte alta de las directivas en modo 8 bits se pueden resolver en tiempo de compilacion con define's
+//siempre se enviaran nibbles al LCD. La parte alta de las directivas en modo 8 bits se pueden resolver 
+//en tiempo de compilacion con macros
 
 #endif
