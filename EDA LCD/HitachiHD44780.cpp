@@ -43,14 +43,14 @@ bool HitachiHD44780::lcdClear()
 
 bool HitachiHD44780::lcdClearToEOL()
 {
-	int cadd_backUp = this->cadd;
-	int end_current_Line = this->cadd < FIRST_SECOND_LINE ? END_FIRST_LINE : END_SECOND_LINE; //modificar define
+	int cadd_backUp = this->cadd;	//tomo un backup para no modificar la posicion del cursor
+	int end_current_Line = this->cadd < FIRST_SECOND_LINE ? END_FIRST_LINE : END_SECOND_LINE; //determino hasta donde hay que borrar
 
-	while (this->cadd <= end_current_Line  && FT_GetStatus(*lcdHandler, &dump, &dump, &dump) == FT_OK)
+	while (this->cadd < end_current_Line  && (end_current_Line - this->cadd) <= TOTAL_COLUMN_LCD )//borro hasta el ultimo caracter de la linea
 		*this << ' ';
 
 	this->cadd = cadd_backUp;	//recupero estado original del cursor
-
+	lcdUpdateCursor();
 	return FT_SUCCESS(FT_GetStatus(*lcdHandler, &dump, &dump, &dump));
 }
 
@@ -144,22 +144,22 @@ bool HitachiHD44780::lcdMoveCursorLeft()
 	return success;
 }
 
-bool HitachiHD44780::lcdSetCursorPosition(const cursorPosition pos)	// en lo posible cambiar numeros magicos
+bool HitachiHD44780::lcdSetCursorPosition(const cursorPosition pos)	
 {
 	bool success = false;
-	if (pos.column >= 0 && pos.column < 16 && pos.row >= 0 && pos.row < 2)
+	if (pos.column >= FIRST_COLUMN_LCD && pos.column < TOTAL_COLUMN_LCD && pos.row >= FIRST_ROW_LCD && pos.row < TOTAL_ROW_LCD)
 	{
-		cadd = pos.row * 16 + pos.column + 1;
+		cadd = pos.row * TOTAL_COLUMN_LCD + pos.column + 1;
 		lcdUpdateCursor();
 		success = true;
 	}
 	return success;
 }
 
-cursorPosition HitachiHD44780::lcdGetCursorPosition()	// tambien estaria bueno cambiar el 16 por un define
+cursorPosition HitachiHD44780::lcdGetCursorPosition()
 {
 	cursorPosition temp;
-	temp.row = (cadd-1) / 16;
-	temp.column = (cadd-1) % 16;
+	temp.row = (cadd-1) / TOTAL_COLUMN_LCD;
+	temp.column = (cadd-1) % TOTAL_COLUMN_LCD;
 	return temp;
 }

@@ -24,7 +24,7 @@ basicLCD::~basicLCD()
 
 void basicLCD::lcdUpdateCursor()
 {
-	if (cadd <= END_FIRST_LINE)
+	if (cadd <= END_FIRST_LINE)		//antes de actualizar posicion del cursor reviso en que linea estoy.
 		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | (cadd-1));
 	else
 		lcdWriteIR(lcdHandler, LCD_SET_DDRAM_ADD | DDRAM_LINE_OFFSET | ((cadd-1) % LINE_LENGHT));

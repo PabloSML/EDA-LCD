@@ -74,7 +74,7 @@
     <LibraryPath>C:\Users\Pablo\source\repos\EDA LCD\EDA LCD\i386;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\i386;C:\Users\Pablo\source\repos\EDA LCD\EDA LCD\i386;C:\Users\Irma\source\repos\EDA-LCD\EDA LCD\i386;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Fran Ledesma\source\repos\PabloSML\EDA-LCD\EDA LCD\i386;C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\i386;C:\Users\Pablo\source\repos\EDA LCD\EDA LCD\i386;C:\Users\Irma\source\repos\EDA-LCD\EDA LCD\i386;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

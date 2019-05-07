@@ -17,7 +17,11 @@ int main()
 		cursorPosition midUp;
 		midUp.column = 5;
 		midUp.row = 0;
-
+		cursorPosition eol;
+		eol.column = 1;
+		eol.row = 0;
+		
+		
 		*basicPtr << (const unsigned char*)"Hello World!";
 		basicPtr->lcdSetCursorPosition(begSec);
 		*basicPtr << (const unsigned char*)"I'm Thanos";
@@ -37,8 +41,11 @@ int main()
 		basicPtr->lcdSetCursorPosition(begSec);
 		*basicPtr << (const unsigned char*)" y g ea  p we ";
 		system("pause");
+		basicPtr->lcdSetCursorPosition(eol);
+		basicPtr->lcdClearToEOL();
+		system("pause");
 		basicPtr->lcdClear();
-
+		
 
 	}
 	system("pause");
