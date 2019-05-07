@@ -7,11 +7,11 @@ int main()
 {
 	basicLCD* basicPtr = nullptr;
 	HitachiHD44780 display;
-	if (display.lcdInitOk())
+	if (display.lcdInitOk())	//inicializo lcd
 	{
 		cout << display.lcdGetError() << endl;
-		basicPtr = &display;
-		cursorPosition begSec;
+		basicPtr = &display;	//puntero al display
+		cursorPosition begSec;	//posiciones de cursor para realizar pruebas
 		begSec.column = 0;
 		begSec.row = 1;
 		cursorPosition midUp;
