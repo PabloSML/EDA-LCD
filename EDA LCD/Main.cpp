@@ -1,3 +1,5 @@
+#include <nlohmann/json.hpp>
+#include <curl/curl.h>
 #include "basicLCD.h"
 #include "HitachiHD44780.h"
 #include <iostream>
