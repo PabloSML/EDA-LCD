@@ -137,15 +137,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="basicLCD.h" />
+    <ClInclude Include="eventGeneratorBundle.h" />
     <ClInclude Include="ftd2xx.h" />
+    <ClInclude Include="genericEventGenerator.h" />
     <ClInclude Include="HitachiHD44780.h" />
     <ClInclude Include="HitachiHD44780Driver.h" />
+    <ClInclude Include="keyboardEvents.h" />
+    <ClInclude Include="networkingEvents.h" />
+    <ClInclude Include="timerEvents.h" />
+    <ClInclude Include="twitterEvents.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basicLCD.cpp" />
+    <ClCompile Include="eventGeneratorBundle.cpp" />
     <ClCompile Include="HitachiHD44780.cpp" />
     <ClCompile Include="HitachiHD44780Driver.cpp" />
+    <ClCompile Include="keyboardEvents.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="networkingEvents.cpp" />
+    <ClCompile Include="timerEvents.cpp" />
+    <ClCompile Include="twitterEvents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

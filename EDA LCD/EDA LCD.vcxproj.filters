@@ -13,19 +13,49 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\LCD">
+      <UniqueIdentifier>{dd490bab-fa6e-4d15-b63e-3660831a9343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EVENTS">
+      <UniqueIdentifier>{00c75cd5-631e-447d-b3e8-483409b7efc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LCD">
+      <UniqueIdentifier>{792a75ca-1597-4c85-8157-d22feb1b7f3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EVENTS">
+      <UniqueIdentifier>{82ec72ff-80af-4e75-a6a8-ad366a73a9cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicLCD.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LCD</Filter>
+    </ClInclude>
+    <ClInclude Include="eventGeneratorBundle.h">
+      <Filter>Header Files\EVENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="genericEventGenerator.h">
+      <Filter>Header Files\EVENTS</Filter>
     </ClInclude>
     <ClInclude Include="ftd2xx.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LCD</Filter>
     </ClInclude>
     <ClInclude Include="HitachiHD44780.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LCD</Filter>
     </ClInclude>
     <ClInclude Include="HitachiHD44780Driver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LCD</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboardEvents.h">
+      <Filter>Header Files\EVENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="networkingEvents.h">
+      <Filter>Header Files\EVENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="timerEvents.h">
+      <Filter>Header Files\EVENTS</Filter>
+    </ClInclude>
+    <ClInclude Include="twitterEvents.h">
+      <Filter>Header Files\EVENTS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -33,13 +63,28 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="basicLCD.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\LCD</Filter>
+    </ClCompile>
+    <ClCompile Include="eventGeneratorBundle.cpp">
+      <Filter>Source Files\EVENTS</Filter>
     </ClCompile>
     <ClCompile Include="HitachiHD44780.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\LCD</Filter>
     </ClCompile>
     <ClCompile Include="HitachiHD44780Driver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\LCD</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboardEvents.cpp">
+      <Filter>Source Files\EVENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="networkingEvents.cpp">
+      <Filter>Source Files\EVENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="timerEvents.cpp">
+      <Filter>Source Files\EVENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="twitterEvents.cpp">
+      <Filter>Source Files\EVENTS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
