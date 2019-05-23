@@ -26,13 +26,7 @@ keyboardEvents::~keyboardEvents()
 eventClass
 keyboardEvents::getEvent(char tecla)
 {
-	eventClass = 
-	switch (tecla)
-	{
-
-	}
-
-	
+	return myEvent;
 }
 
 bool
