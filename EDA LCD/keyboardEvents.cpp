@@ -27,7 +27,7 @@ bool
 keyboardEvents::setEvent(char tecla)
 {
 	bool success = true;
-	if (!(myEvent.isEventEmpty()))
+	if (myEvent.isEventEmpty())
 	{
 		myEvent.setType(EventType::KB_ev);
 		/*
