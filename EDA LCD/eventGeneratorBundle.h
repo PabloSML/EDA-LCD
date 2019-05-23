@@ -15,7 +15,7 @@ public:
 	void detach(genericEventGenerator*);
 
 private:
-	list<genericEventGenerator*> event;
+	list<genericEventGenerator*> eventGens;
 	list<EventType> eventQueue;
 };
 

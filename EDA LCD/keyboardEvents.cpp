@@ -11,10 +11,10 @@ keyboardEvents::~keyboardEvents()
 {
 }
 
-EventType
+eventType
 keyboardEvents::getEvent(void)
 {
-	EventType trash=EventType::KB_ev;	//SOLO PARA QUE COMPILE
+	eventType trash = eventType::EXIT;	//SOLO PARA QUE COMPILE
 	return trash;	//SOLO PARA QUE COMPILE
 }
 

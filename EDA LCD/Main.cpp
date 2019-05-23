@@ -15,12 +15,12 @@ static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmem
 
 int main()
 {
-	basicLCD* basicPtr = nullptr;
-	HitachiHD44780 display;
-	if (display.lcdInitOk())	//inicializo lcd
-	{
-		cout << display.lcdGetError() << endl;
-		basicPtr = &display;	//puntero al display
+	//basicLCD* basicPtr = nullptr;
+	//HitachiHD44780 display;
+	//if (display.lcdInitOk())	//inicializo lcd
+	//{
+		//cout << display.lcdGetError() << endl;
+		//basicPtr = &display;	//puntero al display
 		
 		json j;                    //Variable donde vamos a guardar lo que devuelva Twitter
 
@@ -206,7 +206,7 @@ int main()
 		}
 		else
 			std::cout << "Cannot download tweets. Unable to start cURL" << std::endl;
-	}
+	//}
 	system("pause");
 	return 0;
 }
