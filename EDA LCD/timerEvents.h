@@ -9,8 +9,6 @@ class timerEvents :
 	public genericEventGenerator
 {
 public:
-	timerEvents();
-	~timerEvents();
 	virtual bool hayEvent(void);
 	virtual eventClass getEvent(void);
 
@@ -21,5 +19,6 @@ private:
 	high_resolution_clock::time_point origin;
 	high_resolution_clock::time_point current;
 	duration<double> timeSpan;
+	milliseconds tick;
 };
 

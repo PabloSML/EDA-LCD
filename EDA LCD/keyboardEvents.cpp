@@ -29,7 +29,6 @@ keyboardEvents::setEvent(char tecla)
 	bool success = true;
 	if (myEvent.isEventEmpty())
 	{
-		myEvent.setType(EventType::KB_ev);
 		/*
 		Tolower pone las teclas en minuscula.
 		si la tecla no tiene minuscula,tolower devuelve la misma variable sin modificacion.
