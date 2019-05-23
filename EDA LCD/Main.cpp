@@ -240,3 +240,56 @@ static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmem
 	s->append(data, realsize);
 	return realsize;			//recordar siempre devolver realsize
 }
+
+#include "eventGeneratorBundle.h"
+#include "keyboardEvents.h"
+#include "timerEvents.h"
+
+
+int main()
+{
+	basicLCD* basicPtr = nullptr;
+	eventGeneratorBundle evGenBundle;
+	keyboardEvents keyEvSource;
+	if (keyEvSource.SuccessInit());
+	timerEvents timEvSource;
+	evGenBundle.attach(&keyEvSource);
+	evGenBundle.attach(&timEvSource);
+
+	return 0;
+}
+
+string* fixJson(string* jsonStr)
+{
+	int beg, end, lastValid = jsonStr->find_first_of('[');
+	int count = 0;
+	bool done = false;
+	beg = jsonStr->find_first_of('{');	// se asume que hay por lo menos una llave abierta
+	count++;
+
+	do {
+		beg = jsonStr->find_first_of("{}");
+		if (beg != string::npos)
+		{
+			if ((*jsonStr)[beg] == '{')
+				count++;
+			else
+				count--;
+			if (!count)
+				lastValid = beg;
+			beg++;
+		}
+		else
+			done = true;
+	} while (!done);
+
+	if (!count)
+	{
+		beg = 0;
+		end = lastValid + 1;
+		string temp = jsonStr->substr(beg, end - beg) + "]";
+		*jsonStr = temp;
+	}
+
+	return jsonStr;
+}
