@@ -4,7 +4,7 @@ timerEvents::timerEvents()
 {
 	myEvent.setType(EventType::TM_ev);
 	myEvent.setSubType((int)tmEvType::TICK);
-	tick = milliseconds(100);
+	tick = (milliseconds)100;
 }
 
 bool
