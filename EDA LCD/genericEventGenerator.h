@@ -10,12 +10,15 @@ enum class EventType {KB_ev, NW_ev, TM_ev, TW_ev};
 
 class eventClass {
 public:
+	eventClass() {};
 	eventClass(EventType type, int data)
 	{
 		this->type = type;
 		this->data = data;
 	}
 
+	void setType(EventType type) { this->type = type; }
+	void setData(int data) { this->data = data; }
 private:
 	EventType type;
 	int data;

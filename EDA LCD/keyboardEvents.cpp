@@ -23,10 +23,36 @@ keyboardEvents::~keyboardEvents()
 {
 }
 
-eventClass
-keyboardEvents::getEvent(char tecla)
+bool
+keyboardEvents::setEvent(char tecla)
 {
-	return myEvent;
+	myEvent.setType(EventType::KB_ev);
+/*
+Tolower pone las teclas en minuscula.
+si la tecla no tiene minuscula,tolower devuelve la misma variable sin modificacion.
+*/
+	switch (tolower(tecla))
+	{
+		case 'q': myEvent.setData((int)kbEvType::EXIT);
+				  break;
+
+		case 'r': myEvent.setData((int)kbEvType::REPEAT);
+				  break;
+		
+		case 's': myEvent.setData((int)kbEvType::NEXT);
+				  break;
+
+		case 'a': myEvent.setData((int)kbEvType::PREVIOUS);
+				  break;
+
+		case '+': myEvent.setData((int)kbEvType::FASTER);
+				  break;
+		
+		case '-': myEvent.setData((int)kbEvType::SLOWER);
+				  break;
+		default:  break;
+	}
+	
 }
 
 bool
@@ -35,8 +61,7 @@ keyboardEvents::hayEvent(void)
 	char i = getch(); //getch() devuelve ERR si no se presiono una tecla
 	if (i != ERR) 
 	{
-		getEvent(i);
-
+		setEvent(i);
 	}
 	else
 	{
