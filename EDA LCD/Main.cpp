@@ -6,6 +6,10 @@
 #include <exception>
 #include <list>
 #include <string>
+#include <curses/curses.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 using namespace std;
 using json = nlohmann::json;
 
@@ -15,6 +19,8 @@ static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmem
 
 int main()
 {
+
+	
 	//basicLCD* basicPtr = nullptr;
 	//HitachiHD44780 display;
 	//if (display.lcdInitOk())	//inicializo lcd

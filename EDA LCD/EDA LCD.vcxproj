@@ -90,7 +90,7 @@
       <AdditionalIncludeDirectories>C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\include;C:\Users\Fran Ledesma\source\repos\PabloSML\EDA-LCD\EDA LCD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ftd2xx.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ftd2xx.lib;libcurl.lib;pdcurses.lib;curses.lib;panel.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\lib;C:\Users\Fran Ledesma\source\repos\PabloSML\EDA-LCD\EDA LCD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
