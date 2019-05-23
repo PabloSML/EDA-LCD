@@ -27,31 +27,30 @@ bool
 keyboardEvents::setEvent(char tecla)
 {
 	bool success = true;
-	if (!(myEvent.isDataEmpty()))
+	if (myEvent.isEventEmpty())
 	{
-		myEvent.setType(EventType::KB_ev);
 		/*
 		Tolower pone las teclas en minuscula.
 		si la tecla no tiene minuscula,tolower devuelve la misma variable sin modificacion.
 		*/
 		switch (tolower(tecla))
 		{
-		case 'q': myEvent.setData((int)kbEvType::EXIT);
+		case 'q': myEvent.setSubType((int)kbEvType::EXIT);
 			break;
 
-		case 'r': myEvent.setData((int)kbEvType::REPEAT);
+		case 'r': myEvent.setSubType((int)kbEvType::REPEAT);
 			break;
 
-		case 's': myEvent.setData((int)kbEvType::NEXT);
+		case 's': myEvent.setSubType((int)kbEvType::NEXT);
 			break;
 
-		case 'a': myEvent.setData((int)kbEvType::PREVIOUS);
+		case 'a': myEvent.setSubType((int)kbEvType::PREVIOUS);
 			break;
 
-		case '+': myEvent.setData((int)kbEvType::FASTER);
+		case '+': myEvent.setSubType((int)kbEvType::FASTER);
 			break;
 
-		case '-': myEvent.setData((int)kbEvType::SLOWER);
+		case '-': myEvent.setSubType((int)kbEvType::SLOWER);
 			break;
 		default:  success = false;
 			break;
@@ -81,7 +80,8 @@ eventClass
 keyboardEvents::getEvent()
 {
 	eventClass temp = myEvent;
-	myEvent.setData(NO_DATA);
+	myEvent.setSubType(NO_SUBTYPE);
+	myEvent.setData(nullptr);
 	return temp;
 }
 

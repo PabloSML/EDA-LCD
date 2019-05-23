@@ -1,6 +1,6 @@
 #pragma once
 
-#define NO_DATA (-1)
+#define NO_SUBTYPE (-1)
 
 /*
 *KB_ev -> KeyboardEvent
@@ -12,25 +12,28 @@ enum class EventType {KB_ev, NW_ev, TM_ev, TW_ev};
 
 class eventClass {
 public:
-	eventClass() { this->data = NO_DATA; }
-	eventClass(EventType type, int data)
+	eventClass() { this->subType = NO_SUBTYPE; this->data = nullptr; }
+	eventClass(EventType type, int subType, void* data)
 	{
 		this->type = type;
+		this->subType = subType;
 		this->data = data;
 	}
 
 	void setType(EventType type) { this->type = type; }
-	void setData(int data) { this->data = data; }
-	bool isDataEmpty(void) { 
+	void setSubType(int subType) { this->subType = subType; }
+	void setData(void* data) { this->data = data; }
+	bool isEventEmpty(void) { 
 		bool empty = true;
-		if (this->data != NO_DATA)
+		if (this->subType != NO_SUBTYPE)
 			empty = false;
 		return empty;
 	}
 
 private:
 	EventType type;
-	int data;
+	int subType;
+	void* data;
 };
 
 class genericEventGenerator

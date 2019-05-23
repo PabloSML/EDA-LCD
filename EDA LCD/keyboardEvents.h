@@ -11,7 +11,7 @@ class keyboardEvents :
 	public genericEventGenerator
 {
 public:
-	keyboardEvents();
+	keyboardEvents() { myEvent.setType(EventType::KB_ev); }
 	~keyboardEvents();
 	virtual bool hayEvent(void);
 	virtual eventClass getEvent(void);
