@@ -12,7 +12,7 @@ enum class EventType {KB_ev, NW_ev, TM_ev, TW_ev};
 
 class eventClass {
 public:
-	eventClass() {	this->data = NO_DATA };
+	eventClass() { this->data = NO_DATA; }
 	eventClass(EventType type, int data)
 	{
 		this->type = type;
@@ -21,6 +21,13 @@ public:
 
 	void setType(EventType type) { this->type = type; }
 	void setData(int data) { this->data = data; }
+	bool isDataEmpty(void) { 
+		bool empty = true;
+		if (this->data != NO_DATA)
+			empty = false;
+		return empty;
+	}
+
 private:
 	EventType type;
 	int data;
@@ -33,7 +40,6 @@ public:
 	virtual bool hayEvent(void) = 0;
 
 protected:
-	virtual bool setEvent(void) = 0;
 	eventClass myEvent;
 };
 

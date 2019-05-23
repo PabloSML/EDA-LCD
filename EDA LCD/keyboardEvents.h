@@ -13,10 +13,12 @@ class keyboardEvents :
 public:
 	keyboardEvents();
 	~keyboardEvents();
-	virtual bool setEvent(char tecla);
 	virtual bool hayEvent(void);
+	virtual eventClass getEvent(void);
 	bool SuccessInit(void);
+
 private:
+	bool setEvent(char input);
 	WINDOW * winTest;
 	KB_ST status;
 };

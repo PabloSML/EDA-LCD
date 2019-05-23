@@ -21,52 +21,70 @@ keyboardEvents::keyboardEvents()
 
 keyboardEvents::~keyboardEvents()
 {
+	endwin();
+	cout << "Keyboard destroyed succesfully" << endl;
 }
 
 bool
 keyboardEvents::setEvent(char tecla)
 {
-	myEvent.setType(EventType::KB_ev);
-/*
-Tolower pone las teclas en minuscula.
-si la tecla no tiene minuscula,tolower devuelve la misma variable sin modificacion.
-*/
-	switch (tolower(tecla))
+	bool success = true;
+	if (!(myEvent.isDataEmpty()))
 	{
+		myEvent.setType(EventType::KB_ev);
+		/*
+		Tolower pone las teclas en minuscula.
+		si la tecla no tiene minuscula,tolower devuelve la misma variable sin modificacion.
+		*/
+		switch (tolower(tecla))
+		{
 		case 'q': myEvent.setData((int)kbEvType::EXIT);
-				  break;
+			break;
 
 		case 'r': myEvent.setData((int)kbEvType::REPEAT);
-				  break;
-		
+			break;
+
 		case 's': myEvent.setData((int)kbEvType::NEXT);
-				  break;
+			break;
 
 		case 'a': myEvent.setData((int)kbEvType::PREVIOUS);
-				  break;
+			break;
 
 		case '+': myEvent.setData((int)kbEvType::FASTER);
-				  break;
-		
+			break;
+
 		case '-': myEvent.setData((int)kbEvType::SLOWER);
-				  break;
-		default:  break;
+			break;
+		default:  success = false;
+			break;
+		}
 	}
-	
+	else
+		success = false;
+
+	return success;
 }
 
 bool
 keyboardEvents::hayEvent(void)
 {//tengo que llamar a getEvent si alguien presiono una tecla
 	char i = getch(); //getch() devuelve ERR si no se presiono una tecla
-	if (i != ERR) 
+	if (i != ERR && setEvent(i))
 	{
-		setEvent(i);
+		return true;
 	}
 	else
 	{
-		return false;	//SOLO PARA QUE COMPILE
+		return false;
 	}
+}
+
+eventClass
+keyboardEvents::getEvent()
+{
+	eventClass temp = myEvent;
+	myEvent.setData(NO_DATA);
+	return temp;
 }
 
 bool
