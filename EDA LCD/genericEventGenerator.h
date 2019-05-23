@@ -1,5 +1,7 @@
 #pragma once
 
+#define NO_DATA (-1)
+
 /*
 *KB_ev -> KeyboardEvent
 *NW_ev -> NetworkingEvent
@@ -10,7 +12,7 @@ enum class EventType {KB_ev, NW_ev, TM_ev, TW_ev};
 
 class eventClass {
 public:
-	eventClass() {};
+	eventClass() {	this->data = NO_DATA };
 	eventClass(EventType type, int data)
 	{
 		this->type = type;
