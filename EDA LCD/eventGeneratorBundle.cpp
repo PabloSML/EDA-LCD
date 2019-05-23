@@ -15,13 +15,13 @@ eventGeneratorBundle::~eventGeneratorBundle()
 bool
 eventGeneratorBundle::Continue()
 {
-	return false; //SOLO PARA QUE COMPILE
+	return !quit;
 }
 
 bool
 eventGeneratorBundle::hayEvent()
 {
-	return false; //SOLO PARA QUE COMPILE
+	return !(eventQueue.empty());
 }
 
 void

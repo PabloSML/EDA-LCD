@@ -103,7 +103,7 @@
       <AdditionalIncludeDirectories>C:\Users\Pablo\source\repos\EDA LCD\EDA LCD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ftd2xx.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ftd2xx.lib;libcurl.lib;curses.lib;pdcurses.lib;panel.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\Pablo\source\repos\EDA LCD\EDA LCD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
