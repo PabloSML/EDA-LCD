@@ -23,15 +23,16 @@ keyboardEvents::~keyboardEvents()
 {
 }
 
-EventType
+eventClass
 keyboardEvents::getEvent(char tecla)
 {
-	/*
-	Ahora deberia filtrar la tecla y pushear un evento
-	a la lista de eventos ya procesado	
-	*/
-	EventType trash = EventType::KB_ev;	//SOLO PARA QUE COMPILE
-	return trash;	//SOLO PARA QUE COMPILE
+	eventClass = 
+	switch (tecla)
+	{
+
+	}
+
+	
 }
 
 bool

@@ -26,5 +26,8 @@ class genericEventGenerator
 public:
 	virtual eventClass getEvent(void) = 0;
 	virtual bool hayEvent(void) = 0;
+
+protected:
+	eventClass myEvent;
 };
 

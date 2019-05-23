@@ -21,7 +21,23 @@ eventGeneratorBundle::Continue()
 bool
 eventGeneratorBundle::hayEvent()
 {
+	for (genericEventGenerator* gen : eventGens)
+	{
+		if (gen->hayEvent())
+			eventQueue.push_back(gen->getEvent());
+	}
+
 	return !(eventQueue.empty());
+}
+
+eventClass
+eventGeneratorBundle::getEvent()
+{
+	list<eventClass>::iterator itr = eventQueue.begin();
+	eventClass temp = *itr;
+	eventQueue.pop_front();
+
+	return temp;
 }
 
 void
