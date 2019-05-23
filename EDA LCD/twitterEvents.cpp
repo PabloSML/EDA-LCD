@@ -11,11 +11,10 @@ twitterEvents::~twitterEvents()
 {
 }
 
-EventType
+eventClass
 twitterEvents::getEvent(void)
 {
-	EventType trash=EventType::TW_ev;	//SOLO PARA QUE COMPILE
-	return trash;	//SOLO PARA QUE COMPILE
+	return myEvent;
 }
 
 bool

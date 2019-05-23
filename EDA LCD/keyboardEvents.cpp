@@ -1,7 +1,5 @@
 #include "keyboardEvents.h"
 
-
-
 keyboardEvents::keyboardEvents()
 {
 	WINDOW * winTest = NULL;    //Variable en dónde se guarda la terminal (Window) en donde voy a trabajar.

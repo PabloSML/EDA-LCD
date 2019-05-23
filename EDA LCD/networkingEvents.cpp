@@ -11,11 +11,10 @@ networkingEvents::~networkingEvents()
 {
 }
 
-EventType
+eventClass
 networkingEvents::getEvent(void)
 {
-	EventType trash=EventType::NW_ev;	//SOLO PARA QUE COMPILE
-	return trash;	//SOLO PARA QUE COMPILE
+	return myEvent;
 }
 
 bool

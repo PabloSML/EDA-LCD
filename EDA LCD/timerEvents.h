@@ -6,7 +6,7 @@ class timerEvents :
 public:
 	timerEvents();
 	~timerEvents();
-	EventType getEvent(void);
+	eventClass getEvent(void);
 	bool hayEvent(void);
 };
 
