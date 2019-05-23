@@ -17,5 +17,6 @@ public:
 private:
 	list<genericEventGenerator*> eventGens;
 	list<EventType> eventQueue;
+	bool quit;
 };
 
