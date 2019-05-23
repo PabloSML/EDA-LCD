@@ -2,6 +2,7 @@
 
 keyboardEvents::keyboardEvents()
 {
+	myEvent.setType(EventType::KB_ev);
 	WINDOW * winTest = NULL;    //Variable en dónde se guarda la terminal (Window) en donde voy a trabajar.
 	winTest = initscr();	//inicializo screen
 	if (winTest == NULL)

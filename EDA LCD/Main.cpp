@@ -57,7 +57,11 @@ int main()
 	{
 		cout << "fallo networking" << endl;
 		system("pause");
-		return 0;
+	}
+
+	while (1)
+	{
+
 	}
 
 	

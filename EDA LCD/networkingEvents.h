@@ -37,7 +37,7 @@ public:
 	int stillRunning;
 	CURLM *multiHandle;			//Variable donde vamos a atachear los easy handles
 private:
-	bool setEvent();
+	//bool setEvent();
 	NW_ST status;
 	json j;                    //Variable donde vamos a guardar lo que devuelva Twitter
 	CURL *curl;					//Variable donde vamos a guardar las configuraciones de una transferencia
@@ -45,6 +45,7 @@ private:
 	std::string readString, token;
 	std::list<std::string> names;
 	static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmemb, void *userp);
-	void printNames(std::list<std::string> names);
+	//void printNames(std::list<std::string> names);
+	string* fixJson(string* jsonStr);
 };
 

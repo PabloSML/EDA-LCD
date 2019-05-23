@@ -9,6 +9,7 @@ class timerEvents :
 	public genericEventGenerator
 {
 public:
+	timerEvents();
 	virtual bool hayEvent(void);
 	virtual eventClass getEvent(void);
 

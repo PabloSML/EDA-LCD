@@ -165,13 +165,13 @@ networkingEvents::getEvent(void)
 bool
 networkingEvents::hayEvent(void)
 {
-	return false;	//SOLO PARA QUE COMPILE
+	return false;	
 }
 
 bool
 setEvent(void)
 {
-	return false; //solo pa ra qcinouke
+	return false; 
 }
 
 
@@ -180,7 +180,6 @@ std::size_t networkingEvents::myCallback(void *contents, std::size_t size, std::
 {
 	std::size_t realsize = size * nmemb;
 	char* data = (char *)contents;
-	//fprintf(stdout, "%s",data);
 	std::string* s = (std::string*)userp;
 	s->append(data, realsize);
 	return realsize;			//recordar siempre devolver realsize
@@ -193,45 +192,56 @@ void networkingEvents::checkError(void)	//luego de llamar a esta funcion hay  qu
 	if (res != CURLE_OK)
 	{
 		std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-		//Hacemos un clean up de curl antes de salir.
-		curl_easy_cleanup(curl);
 		status = NW_ST::NW_Fail;
-		return;
 	}
 
 	//Siempre realizamos el cleanup al final
 	curl_easy_cleanup(curl);
 
-	//Si el request de CURL fue exitoso entonces twitter devuelve un JSON
-	//con toda la informacion de los tweets que le pedimos
-	j = json::parse(readString);
+	// Se verifica el estado del json al terminar la conexion
+	
 	try
 	{
-		//Al ser el JSON un arreglo de objetos JSON se busca el campo text para cada elemento
-		for (auto element : j)
-			names.push_back(element["text"]);
-		std::cout << "Tweets retrieved from Twitter account: " << std::endl;
-		printNames(names);
+		j = json::parse(readString);
 	}
-	catch (std::exception& e)
+	catch (exception& e)
 	{
-		//Muestro si hubo un error de la libreria
-		std::cerr << e.what() << std::endl;
-		/*   llamo a fixjson()   */
+		j = json::parse(*fixJson(&readString));
 	}
 }
 
-
-//Funcion auxiliar para imprimir los tweets en pantalla una vez parseados
-void networkingEvents::printNames(std::list<std::string> names)
+string* 
+networkingEvents::fixJson(string* jsonStr)
 {
-	for (auto c : names)
+	int beg, end, lastValid = jsonStr->find_first_of('[');
+	int count = 0;
+	bool done = false;
+	beg = jsonStr->find_first_of('{');	// se asume que hay por lo menos una llave abierta
+	count++;
+
+	do {
+		beg = jsonStr->find_first_of("{}");
+		if (beg != string::npos)
+		{
+			if ((*jsonStr)[beg] == '{')
+				count++;
+			else
+				count--;
+			if (!count)
+				lastValid = beg;
+			beg++;
+		}
+		else
+			done = true;
+	} while (!done);
+
+	if (!count)
 	{
-		//Eliminamos el URL al final para mostrar
-		int extended = c.find("https");
-		c = c.substr(0, extended);
-		c.append("...");
-		std::cout << c << std::endl;
-		std::cout << "-----------------------------------------" << std::endl;
+		beg = 0;
+		end = lastValid + 1;
+		string temp = jsonStr->substr(beg, end - beg) + "]";
+		*jsonStr = temp;
 	}
+
+	return jsonStr;
 }
