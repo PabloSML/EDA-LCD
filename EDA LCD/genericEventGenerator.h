@@ -31,6 +31,7 @@ public:
 	virtual bool hayEvent(void) = 0;
 
 protected:
+	virtual bool setEvent(void) = 0;
 	eventClass myEvent;
 };
 
