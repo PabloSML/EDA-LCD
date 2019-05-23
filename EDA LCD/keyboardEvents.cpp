@@ -11,7 +11,7 @@ keyboardEvents::~keyboardEvents()
 {
 }
 
-EventType
+eventClass
 keyboardEvents::getEvent(void)
 {
 	EventType trash = EventType::KB_ev;	//SOLO PARA QUE COMPILE

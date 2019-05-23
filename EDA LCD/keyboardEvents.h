@@ -6,6 +6,6 @@ class keyboardEvents :
 public:
 	keyboardEvents();
 	~keyboardEvents();
-	virtual EventType getEvent(void);
+	virtual eventClass getEvent(void);
 	virtual bool hayEvent(void);
 };
