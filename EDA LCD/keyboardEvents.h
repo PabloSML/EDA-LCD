@@ -13,7 +13,7 @@ class keyboardEvents :
 public:
 	keyboardEvents();
 	~keyboardEvents();
-	virtual eventClass getEvent(char tecla);
+	virtual bool setEvent(char tecla);
 	virtual bool hayEvent(void);
 	bool SuccessInit(void);
 private:
