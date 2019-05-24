@@ -5,6 +5,8 @@
 networkingEvents::networkingEvents(string account, int NumTweets)
 {
 	status = NW_ST::NW_OK;
+	this->account = account;
+	this->NumTweets = NumTweets;
 
 	// Query es la dirección de Twitter que vamos a consultar. vamos a bajar los &count twits de screen_name en formato JSON.
 	std::string query = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=";
@@ -92,7 +94,7 @@ networkingEvents::networkingEvents(string account, int NumTweets)
 			//Tratamos de acceder al campo acces_token del JSON
 			std::string aux = j["access_token"];
 			token = aux;
-			std::cout << "Bearer Token get from Twitter API: \n" << token << std::endl;
+			//std::cout << "Bearer Token get from Twitter API: \n" << token << std::endl;
 		}
 		catch (std::exception& e)
 		{
@@ -108,14 +110,33 @@ networkingEvents::networkingEvents(string account, int NumTweets)
 		status = NW_ST::NW_Fail;
 		return;
 	}
+}
 
-	//Una vez obtenido el Token ahora voy a buscar los Twits
 
-/************************************************************************************
-*                        Get Tweets from the Twitter API							*
-************************************************************************************/
+networkingEvents::~networkingEvents()
+{
 
-// Nuevamente reinicializo todo curl.
+}
+
+void printNames(std::list<std::string> names)
+{
+	for (string c : names)
+	{
+		//Eliminamos el URL al final para mostrar
+		int extended = c.find("https");
+		c = c.substr(0, extended);
+		//c.append("...");
+		std::cout << c << std::endl;
+		//std::cout << "-----------------------------------------" << std::endl;
+	}
+}
+
+void
+networkingEvents::downloadTuits(void)
+{
+	std::string query = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=";
+	query += account + "&count=" + std::to_string(NumTweets);
+
 	curl = curl_easy_init();
 	multiHandle = curl_multi_init();
 	readString = "";
@@ -144,17 +165,51 @@ networkingEvents::networkingEvents(string account, int NumTweets)
 
 		//Realizamos ahora un perform no bloqueante
 		curl_multi_perform(multiHandle, &stillRunning);
+		while (stillRunning)
+		{
+			//Debemos hacer polling de la transferencia hasta que haya terminado
+			curl_multi_perform(multiHandle, &stillRunning);
+
+			//Mientras tanto podemos hacer otras cosas
+		}
+
+		//Checkeamos errores
+		if (res != CURLE_OK)
+		{
+			std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+			//Hacemos un clean up de curl antes de salir.
+			curl_easy_cleanup(curl);
+			return ;
+		}
+
+		//Siempre realizamos el cleanup al final
+		curl_easy_cleanup(curl);
+
+		//Si el request de CURL fue exitoso entonces twitter devuelve un JSON
+		//con toda la informacion de los tweets que le pedimos
+		j = json::parse(readString);
+		try
+		{
+			//Al ser el JSON un arreglo de objetos JSON se busca el campo text para cada elemento
+			for (auto element : j)
+				names.push_back(element["text"]);
+			std::cout << "Tweets retrieved from Twitter account: " << std::endl;
+			printNames(names);
+		}
+		catch (std::exception& e)
+		{
+			//Muestro si hubo un error de la libreria
+			std::cerr << e.what() << std::endl;
+		}
 	}
 	else
 	{
+		std::cout << "Cannot download tweets. Unable to start cURL" << std::endl;
 		status = NW_ST::NW_Fail;
 	}
+
 }
 
-
-networkingEvents::~networkingEvents()
-{
-}
 
 eventClass
 networkingEvents::getEvent(void)

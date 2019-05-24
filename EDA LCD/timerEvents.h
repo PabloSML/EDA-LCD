@@ -1,9 +1,13 @@
 #pragma once
 #include "genericEventGenerator.h"
 #include <chrono>
+#include <ctime>   // localtime
+#include <sstream> // stringstream
+#include <iomanip> // put_time
+#include <string>  // string
 using namespace std::chrono;
 
-enum class tmEvType : int {TICK = 0};
+//enum class tmEvType : int {TICK = 0};
 
 class timerEvents :
 	public genericEventGenerator
@@ -12,6 +16,11 @@ public:
 	timerEvents();
 	virtual bool hayEvent(void);
 	virtual eventClass getEvent(void);
+
+	void riseSpeed();
+	void downSpeed();
+
+	string getDate(void);
 
 	void restartTimer(void) { origin = high_resolution_clock::now(); }
 

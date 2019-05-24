@@ -20,6 +20,7 @@ class networkingEvents :
 public:
 	networkingEvents(string account, int NumTweets);
 	~networkingEvents();
+
 	bool isStatusOK()
 	{
 		if (status == NW_ST::NW_OK)
@@ -30,22 +31,33 @@ public:
 			return false;
 	}
 
+	void downloadTuits();
+
 
 	virtual eventClass getEvent(void);
 	virtual bool hayEvent(void);
+	string getToken(void) { return token; }
+	std::list<std::string> getDownloadTuits(void) { return names; }
+
 	void checkError();
-	int stillRunning;
-	CURLM *multiHandle;			//Variable donde vamos a atachear los easy handles
+
+	//int stillRunning;
+	//CURLM *multiHandle;			//Variable donde vamos a atachear los easy handles
+
 private:
 	//bool setEvent();
+	int stillRunning;
 	NW_ST status;
 	json j;                    //Variable donde vamos a guardar lo que devuelva Twitter
 	CURL *curl;					//Variable donde vamos a guardar las configuraciones de una transferencia
+	CURLM *multiHandle;			//Variable donde vamos a atachear los easy handles
 	CURLcode res;
 	std::string readString, token;
 	std::list<std::string> names;
 	static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmemb, void *userp);
 	//void printNames(std::list<std::string> names);
 	string* fixJson(string* jsonStr);
+	string account;
+	int NumTweets;
 };
 

@@ -1,14 +1,22 @@
-#pragma once
+#ifndef GENERICEVENTGENERATOR_H
+#define GENERICEVENTGENERATOR_H
 
 #define NO_SUBTYPE (-1)
+#define TOTAL_EVENTS (4)
 
+using namespace std;
 /*
 *KB_ev -> KeyboardEvent
 *NW_ev -> NetworkingEvent
 *TM_ev -> TimerEvent
 *TW_ev -> TwitterEvent
 */
-enum class EventType {KB_ev, NW_ev, TM_ev, TW_ev};
+
+enum  EventType {KB_ev, NW_ev, TM_ev, TW_ev};
+enum  kbEvType : int  { EXIT = 0, PREVIOUS, NEXT, REPEAT, FASTER, SLOWER };
+enum  NW_EV_TYPE : int { TOKEN_RECEIVED , DATA_RECEIVED , DISCONNECTED , NO_MORE_DATA };
+enum  TM_EV_TYPE : int { REFRESH };
+enum  TW_EV_TYPE : int { LAST_TUIT , TUIT_READY , NEXT_TUIT , FIRST_TUIT, NO_EVENT};
 
 class eventClass {
 public:
@@ -23,6 +31,11 @@ public:
 	void setType(EventType type) { this->type = type; }
 	void setSubType(int subType) { this->subType = subType; }
 	void setData(void* data) { this->data = data; }
+
+	EventType getType(void) { return type; }
+	int  getSubType(void) { return subType; }
+	void* getData (void)	{ return data; }
+
 	bool isEventEmpty(void) { 
 		bool empty = true;
 		if (this->subType != NO_SUBTYPE)
@@ -46,3 +59,4 @@ protected:
 	eventClass myEvent;
 };
 
+#endif

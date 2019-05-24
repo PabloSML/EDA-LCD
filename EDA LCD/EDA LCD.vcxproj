@@ -87,11 +87,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\include;C:\Users\Fran Ledesma\source\repos\PabloSML\EDA-LCD\EDA LCD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Irma\source\repos\EDA-LCD\EDA LCD\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ftd2xx.lib;libcurl.lib;pdcurses.lib;curses.lib;panel.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\PabloSmolkin\source\repos\PabloSML\EDA-LCD\EDA LCD\lib;C:\Users\Fran Ledesma\source\repos\PabloSML\EDA-LCD\EDA LCD\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Irma\source\repos\EDA-LCD\EDA LCD\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -137,18 +137,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="basicLCD.h" />
+    <ClInclude Include="downloadDispatcher.h" />
     <ClInclude Include="eventGeneratorBundle.h" />
     <ClInclude Include="ftd2xx.h" />
     <ClInclude Include="genericEventGenerator.h" />
     <ClInclude Include="HitachiHD44780.h" />
     <ClInclude Include="HitachiHD44780Driver.h" />
     <ClInclude Include="keyboardEvents.h" />
+    <ClInclude Include="genericDispatcher.h" />
     <ClInclude Include="networkingEvents.h" />
     <ClInclude Include="timerEvents.h" />
     <ClInclude Include="twitterEvents.h" />
+    <ClInclude Include="userInterfaceDispatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="basicLCD.cpp" />
+    <ClCompile Include="downloadDispatcher.cpp" />
     <ClCompile Include="eventGeneratorBundle.cpp" />
     <ClCompile Include="HitachiHD44780.cpp" />
     <ClCompile Include="HitachiHD44780Driver.cpp" />
@@ -157,6 +161,7 @@
     <ClCompile Include="networkingEvents.cpp" />
     <ClCompile Include="timerEvents.cpp" />
     <ClCompile Include="twitterEvents.cpp" />
+    <ClCompile Include="userInterfaceDispatcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

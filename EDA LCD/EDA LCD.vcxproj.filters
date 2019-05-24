@@ -25,6 +25,12 @@
     <Filter Include="Source Files\EVENTS">
       <UniqueIdentifier>{82ec72ff-80af-4e75-a6a8-ad366a73a9cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DISPATCHER">
+      <UniqueIdentifier>{af0e23a6-2974-49dd-b737-1d3c5ba4c5d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DISPATCHER">
+      <UniqueIdentifier>{d82a74c9-0bf5-4ab6-bed3-1f1145961b7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="basicLCD.h">
@@ -57,6 +63,15 @@
     <ClInclude Include="twitterEvents.h">
       <Filter>Header Files\EVENTS</Filter>
     </ClInclude>
+    <ClInclude Include="genericDispatcher.h">
+      <Filter>Header Files\DISPATCHER</Filter>
+    </ClInclude>
+    <ClInclude Include="downloadDispatcher.h">
+      <Filter>Header Files\DISPATCHER</Filter>
+    </ClInclude>
+    <ClInclude Include="userInterfaceDispatcher.h">
+      <Filter>Header Files\DISPATCHER</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -85,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="twitterEvents.cpp">
       <Filter>Source Files\EVENTS</Filter>
+    </ClCompile>
+    <ClCompile Include="downloadDispatcher.cpp">
+      <Filter>Source Files\DISPATCHER</Filter>
+    </ClCompile>
+    <ClCompile Include="userInterfaceDispatcher.cpp">
+      <Filter>Source Files\DISPATCHER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

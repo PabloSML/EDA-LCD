@@ -1,4 +1,5 @@
 #include "eventGeneratorBundle.h"
+#include "genericEventGenerator.h"
 #include <iostream>
 
 
@@ -15,12 +16,27 @@ eventGeneratorBundle::~eventGeneratorBundle()
 bool
 eventGeneratorBundle::Continue()
 {
-	return !quit;
+	//printf("ENTRE A CONTINUE");
+
+	bool continueFlag = true;
+
+	if (hayEvent())
+	{
+		//cout << "HUBO EVENTO EN EL BUNDLE" << endl;
+		for (list<eventClass>::iterator it = eventQueue.begin(); it != eventQueue.end(); it++)
+		{
+			if (it->getSubType() == EXIT && it->getType() == KB_ev)
+				continueFlag = false;
+		}
+	}
+
+	return continueFlag;
 }
 
 bool
 eventGeneratorBundle::hayEvent()
 {
+	//printf("ENTRE A HAY EVENTO");
 	for (genericEventGenerator* gen : eventGens)
 	{
 		if (gen->hayEvent())
@@ -33,6 +49,7 @@ eventGeneratorBundle::hayEvent()
 eventClass
 eventGeneratorBundle::getEvent()
 {
+	//printf("ENTRE A GET EVENTO");
 	list<eventClass>::iterator itr = eventQueue.begin();
 	eventClass temp = *itr;
 	eventQueue.pop_front();
@@ -43,6 +60,7 @@ eventGeneratorBundle::getEvent()
 void
 eventGeneratorBundle::attach(genericEventGenerator* evGen)
 {
+	//printf("ENTRE A ATACH");
 	eventGens.push_back(evGen);
 }
 

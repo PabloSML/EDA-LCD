@@ -14,6 +14,7 @@ keyboardEvents::keyboardEvents()
 	{
 		status = KB_ST::KB_OK;
 		nodelay(winTest, TRUE); //con esta funcion configuro que getch() no sea bloqueante
+		noecho();
 	}
 }
 
@@ -21,7 +22,7 @@ keyboardEvents::keyboardEvents()
 keyboardEvents::~keyboardEvents()
 {
 	endwin();
-	cout << "Keyboard destroyed succesfully" << endl;
+	//cout << "Keyboard destroyed succesfully" << endl;
 }
 
 bool

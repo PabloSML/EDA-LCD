@@ -9,9 +9,12 @@ class eventGeneratorBundle
 public:
 	eventGeneratorBundle();
 	~eventGeneratorBundle();
+
 	bool Continue(void);
 	bool hayEvent(void);
+
 	eventClass getEvent(void);
+
 	void attach(genericEventGenerator*);
 	void detach(genericEventGenerator*);
 
