@@ -45,19 +45,19 @@ int main()
 
 	//cout  << "syze" << tuits.getTuits().size() << endl;
 	//cout << "syze" << *(tuits.getTuits().begin) << endl;
-	//Sleep(10000);
+	//aSleep(10000);
 
-	eventGeneratorBundle eventGenerator;
+	eventGeneratorBundle* eventGenerator = new eventGeneratorBundle;
 	genericDispatcher* mainDispatcher = nullptr;
 	downloadDispatcher* gettingTuits =  new downloadDispatcher;
 	userInterfaceDispatcher* showTuits =  new userInterfaceDispatcher;
 
 	mainDispatcher = showTuits;
 
-	eventGenerator.attach(&keyboard);
-	eventGenerator.attach(&network);
-	eventGenerator.attach(&timer);
-	eventGenerator.attach(&tuits);
+	eventGenerator->attach(&keyboard);
+	eventGenerator->attach(&network);
+	eventGenerator->attach(&timer);
+	eventGenerator->attach(&tuits);
 
 	//basicLCD* basicPtr = nullptr;
 	//HitachiHD44780 display;
@@ -109,12 +109,12 @@ int main()
 	//eventClass evento;
 	//cout << "ya inicialice el evento" << endl;
 	
-	while (eventGenerator.Continue())
+	while (eventGenerator->Continue())
 	{
-		if (eventGenerator.hayEvent())
+		if (eventGenerator->hayEvent())
 		{
 			//cout << "hubo evento" << endl;
-			mainDispatcher->dispatcher(eventGenerator.getEvent(), &keyboard, &network, &timer, &tuits);
+			mainDispatcher->dispatcher(&eventGenerator->getEvent(), &keyboard, &network, &timer, &tuits);
 			/*
 			evento = keyboard.getEvent();
 			cout << "tipo de dato: " << (int)evento.getType() << endl;

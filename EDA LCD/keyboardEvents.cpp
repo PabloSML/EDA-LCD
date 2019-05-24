@@ -99,3 +99,9 @@ keyboardEvents::SuccessInit(void)
 		return false;
 	}
 }
+
+void
+keyboardEvents::setEvent(kbEvType ev)
+{
+	myEvent.setSubType(ev);
+}

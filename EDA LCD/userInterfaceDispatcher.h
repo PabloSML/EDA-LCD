@@ -9,7 +9,8 @@ public:
 	userInterfaceDispatcher();
 	~userInterfaceDispatcher();
 
-	virtual void dispatcher(eventClass, keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*);
+	virtual void dispatcher(eventClass*, keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*);
+	void print();
 
 private:
 	std::string tuitToShow;

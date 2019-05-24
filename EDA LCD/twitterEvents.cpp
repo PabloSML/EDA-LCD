@@ -5,7 +5,10 @@
 twitterEvents::twitterEvents()
 {
 	myEvent.setType((EventType::TW_ev));
-	myEvent.setSubType((TW_EV_TYPE::NO_EVENT));
+	//myEvent.setSubType((TW_EV_TYPE::NO_EVENT));
+	myEvent.setSubType((TW_EV_TYPE::FIRST_TUIT));
+
+	//cout << "entre a constructor de twitter" << endl;
 
 	index = 0;
 }
@@ -21,10 +24,24 @@ twitterEvents::getEvent(void)
 	return myEvent;
 }
 
+void
+twitterEvents::setEvent(TW_EV_TYPE ev)
+{
+	myEvent.setSubType(ev);
+}
+
+
 bool
 twitterEvents::hayEvent(void)
 {
 	bool value = false;
+
+	/*if ((index + 1) == tuits.size())
+		setEvent(TW_EV_TYPE::LAST_TUIT);*/
+
+
+	if (myEvent.getSubType() != TW_EV_TYPE::NO_TW_EVENT)
+		value = true;
 	/*if (index = 0)
 	{
 		value = true;
@@ -47,6 +64,10 @@ twitterEvents::getNextTuit(void)
 	if ((index+1) < tuits.size())
 	{
 		index += 1;
+	}
+	else
+	{
+		setEvent(TW_EV_TYPE::LAST_TUIT);
 	}
 	std::advance(it, index);
 

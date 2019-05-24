@@ -73,3 +73,10 @@ timerEvents::getDate(void)
 	string str = "PONER FECHA";
 	return str;
 }
+
+
+void
+timerEvents::setEvent(TM_EV_TYPE ev)
+{
+	myEvent.setSubType(ev);
+}

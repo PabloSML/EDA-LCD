@@ -16,6 +16,7 @@ public:
 	virtual bool hayEvent(void);
 
 	void setTuits(std::list<std::string>);
+	void setEvent(TW_EV_TYPE ev);
 
 	std::string getNextTuit();
 	std::string getSameTuit();

@@ -13,6 +13,6 @@
 class genericDispatcher
 {
 public:
-	virtual void dispatcher(eventClass,keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*) = 0;
+	virtual void dispatcher(eventClass*,keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*) = 0;
 };
 

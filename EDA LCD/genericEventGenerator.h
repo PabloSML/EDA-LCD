@@ -13,10 +13,10 @@ using namespace std;
 */
 
 enum  EventType {KB_ev, NW_ev, TM_ev, TW_ev};
-enum  kbEvType : int  { EXIT = 0, PREVIOUS, NEXT, REPEAT, FASTER, SLOWER };
-enum  NW_EV_TYPE : int { TOKEN_RECEIVED , DATA_RECEIVED , DISCONNECTED , NO_MORE_DATA };
-enum  TM_EV_TYPE : int { REFRESH };
-enum  TW_EV_TYPE : int { LAST_TUIT , TUIT_READY , NEXT_TUIT , FIRST_TUIT, NO_EVENT};
+enum  kbEvType : int  { EXIT = 0, PREVIOUS, NEXT, REPEAT, FASTER, SLOWER, NO_KB_EVENT};
+enum  NW_EV_TYPE : int { TOKEN_RECEIVED , DATA_RECEIVED , DISCONNECTED , NO_MORE_DATA, NO_NW_EVENT};
+enum  TM_EV_TYPE : int { REFRESH, NO_TM_EVENT};
+enum  TW_EV_TYPE : int { LAST_TUIT , TUIT_READY , NEXT_TUIT , FIRST_TUIT, NO_TW_EVENT};
 
 class eventClass {
 public:

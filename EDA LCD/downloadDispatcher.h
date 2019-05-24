@@ -8,6 +8,6 @@ public:
 	downloadDispatcher();
 	~downloadDispatcher();
 
-	virtual void dispatcher(eventClass, keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*);
+	virtual void dispatcher(eventClass*,keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*);
 };
 

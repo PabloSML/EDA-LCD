@@ -17,6 +17,8 @@ public:
 	virtual bool hayEvent(void);
 	virtual eventClass getEvent(void);
 
+	void setEvent(TM_EV_TYPE ev);
+
 	void riseSpeed();
 	void downSpeed();
 

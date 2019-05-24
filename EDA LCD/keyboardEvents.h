@@ -16,6 +16,8 @@ public:
 	virtual eventClass getEvent(void);
 	bool SuccessInit(void);
 
+	void setEvent(kbEvType ev);
+
 private:
 	bool setEvent(char input);
 	WINDOW * winTest;

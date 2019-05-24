@@ -300,3 +300,9 @@ networkingEvents::fixJson(string* jsonStr)
 
 	return jsonStr;
 }
+
+void
+networkingEvents::setEvent(NW_EV_TYPE ev)
+{
+	myEvent.setSubType(ev);
+}

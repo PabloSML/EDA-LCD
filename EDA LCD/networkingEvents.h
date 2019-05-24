@@ -33,6 +33,7 @@ public:
 
 	void downloadTuits();
 
+	void setEvent(NW_EV_TYPE ev);
 
 	virtual eventClass getEvent(void);
 	virtual bool hayEvent(void);
