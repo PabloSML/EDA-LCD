@@ -20,15 +20,15 @@ eventGeneratorBundle::Continue()
 
 	bool continueFlag = true;
 
-	if (hayEvent())
+	/*if (hayEvent())
 	{
 		//cout << "HUBO EVENTO EN EL BUNDLE" << endl;
 		for (list<eventClass>::iterator it = eventQueue.begin(); it != eventQueue.end(); it++)
 		{
-			if (it->getSubType() == EXIT && it->getType() == KB_ev)
+			if (it->getSubType() == kbEvType::EXIT)
 				continueFlag = false;
 		}
-	}
+	}*/
 
 	return continueFlag;
 }
@@ -49,7 +49,7 @@ eventGeneratorBundle::hayEvent()
 eventClass
 eventGeneratorBundle::getEvent()
 {
-	//printf("ENTRE A GET EVENTO");
+	printf("ENTRE A GET EVENTO");
 	list<eventClass>::iterator itr = eventQueue.begin();
 	eventClass temp = *itr;
 	eventQueue.pop_front();

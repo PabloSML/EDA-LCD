@@ -10,9 +10,12 @@ public:
 	~userInterfaceDispatcher();
 
 	virtual void dispatcher(eventClass*, keyboardEvents*, networkingEvents*, timerEvents*, twitterEvents*);
-	void print();
 
 private:
+
+	void print(twitterEvents* twpointer,string tuitToDisplay);
 	std::string tuitToShow;
+	int cutIndex;
+	bool hayTuit;
 };
 

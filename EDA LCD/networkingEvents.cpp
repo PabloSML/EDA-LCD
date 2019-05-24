@@ -118,17 +118,25 @@ networkingEvents::~networkingEvents()
 
 }
 
-void printNames(std::list<std::string> names)
+void printNames(std::list<std::string> myList)
 {
-	for (string c : names)
+	for (string c : myList)
 	{
-		//Eliminamos el URL al final para mostrar
-		int extended = c.find("https");
-		c = c.substr(0, extended);
-		//c.append("...");
 		std::cout << c << std::endl;
-		//std::cout << "-----------------------------------------" << std::endl;
+		std::cout << "-----------------------------------------" << std::endl;
 	}
+}
+
+string parseList(string str, const char *cutLimit)
+{
+	if (cutLimit != nullptr)
+	{
+		int extended = str.find(cutLimit);
+		str = str.substr(0, extended);
+		str =  "               " + str + "              ";
+	}
+		
+		return str;
 }
 
 void
@@ -192,9 +200,13 @@ networkingEvents::downloadTuits(void)
 		{
 			//Al ser el JSON un arreglo de objetos JSON se busca el campo text para cada elemento
 			for (auto element : j)
-				names.push_back(element["text"]);
-			std::cout << "Tweets retrieved from Twitter account: " << std::endl;
+			{
+				names.push_back(parseList(element["text"],"https"));
+				dates.push_back(parseList(element["created_at"], nullptr));
+			}
+			//std::cout << "Tweets retrieved from Twitter account: " << std::endl;
 			printNames(names);
+			printNames(dates);
 		}
 		catch (std::exception& e)
 		{

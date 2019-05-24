@@ -41,11 +41,11 @@ int main()
 
 	//ESTAS DOS FUNCIONES VAN CON EL OTRO DISPATCHER
 	network.downloadTuits();
-	tuits.setTuits(network.getDownloadTuits());
+	tuits.setTuits(network.getDownloadTuits(), network.getDownloadDates());
 
 	//cout  << "syze" << tuits.getTuits().size() << endl;
 	//cout << "syze" << *(tuits.getTuits().begin) << endl;
-	//aSleep(10000);
+	//Sleep(15000);
 
 	eventGeneratorBundle* eventGenerator = new eventGeneratorBundle;
 	genericDispatcher* mainDispatcher = nullptr;

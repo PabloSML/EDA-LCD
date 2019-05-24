@@ -27,6 +27,7 @@ twitterEvents::getEvent(void)
 void
 twitterEvents::setEvent(TW_EV_TYPE ev)
 {
+	cout << "INGRESE A SET EVENT TWITTER" << endl;
 	myEvent.setSubType(ev);
 }
 
@@ -97,9 +98,10 @@ twitterEvents::getPreviousTuit(void)
 }
 
 void 
-twitterEvents::setTuits(std::list<std::string> downloadTuits)
+twitterEvents::setTuits(std::list<std::string> downloadTuits, std::list<std::string> downloadDates)
 {
-	tuits=downloadTuits;
+	tuits = downloadTuits;
+	dates = downloadDates;
 }
 
 string
@@ -108,4 +110,18 @@ twitterEvents::getFirstTuit(void)
 	list<string>::iterator it = tuits.begin();
 
 	return *it;
+}
+
+std::string
+twitterEvents::getDate(void)
+{
+	std::string str;
+
+	list<string>::iterator it = dates.begin();
+	std::advance(it, index);
+
+	str = (*it).substr(8, 2) + '/' + (*it).substr(4, 2) + '/' + (*it).substr(28, 2) + " - " + (*it).substr(11, 5); 
+	
+
+	return str;
 }

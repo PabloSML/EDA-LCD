@@ -3,22 +3,12 @@
 
 timerEvents::timerEvents() 
 {
+	timer = DEFAULT_TIMER;
 	myEvent.setType(EventType::TM_ev);
 	myEvent.setSubType((int)TM_EV_TYPE::REFRESH);
-	tick = (milliseconds)1000;
+	tick = (milliseconds)timer;
 }
 
-bool
-timerEvents::setEvent()
-{
-	bool success = false;
-	if (myEvent.isEventEmpty())
-	{
-		success = true;
-	}
-
-	return success;
-}
 
 eventClass
 timerEvents::getEvent(void)
@@ -38,7 +28,10 @@ timerEvents::hayEvent(void)
 		//if (setEvent())
 		//{
 			isThereEvent = true;
-	
+			setEvent(TM_EV_TYPE::REFRESH);
+
+
+			//cout << "eventos cada" << tick << "   MILISEG" << std::endl;
 			//std::cout << "HUBO EVENTO DE TIMER EN HAYEVENT" << std::endl;
 		//}
 		restartTimer();
@@ -50,13 +43,24 @@ timerEvents::hayEvent(void)
 void
 timerEvents::riseSpeed()
 {
-	
-}
+	if (timer + TIME_SENSIBILITY <= MAX_TIMER)
+	{
+		timer += TIME_SENSIBILITY;
+		cout << "eventos cada" << timer << "   MILISEG" << std::endl;
+		tick = (milliseconds)timer;
+	}
+
+} 
 
 void
 timerEvents::downSpeed()
 {
-		
+	if (timer - TIME_SENSIBILITY >= MIN_TIMER)
+	{
+		timer -= TIME_SENSIBILITY;
+		cout << "eventos cada" << timer << "   MILISEG" << std::endl;
+		tick = (milliseconds)timer;
+	}
 }
 
 

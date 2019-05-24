@@ -39,6 +39,7 @@ public:
 	virtual bool hayEvent(void);
 	string getToken(void) { return token; }
 	std::list<std::string> getDownloadTuits(void) { return names; }
+	std::list<std::string> getDownloadDates(void) { return dates; }
 
 	void checkError();
 
@@ -55,6 +56,8 @@ private:
 	CURLcode res;
 	std::string readString, token;
 	std::list<std::string> names;
+	std::list<std::string> dates;
+	std::list<std::string> namesToCopy;
 	static std::size_t myCallback(void *contents, std::size_t size, std::size_t nmemb, void *userp);
 	//void printNames(std::list<std::string> names);
 	string* fixJson(string* jsonStr);
